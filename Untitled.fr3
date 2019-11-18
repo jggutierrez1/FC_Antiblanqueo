@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="6.4.11" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Por defecto" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43756.4489248148" ReportOptions.Description.Text="" ReportOptions.LastChange="43756.4959882523" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="ADOTable1" DataSetName="ADOTable1"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxADOTable Name="ADOTable1" UserName="ADOTable1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" TableName="numetran" Database="ADODatabase1" PropData="05704C656674039C000470546F7003D000"/>
+    <TfrxADODatabase Name="ADODatabase1" DatabaseName="Provider=MSDASQL.1;Persist Security Info=False;Data Source=COMPUCAS_DBF;" LoginPrompt="False" PropData="05704C656674039C000470546F70027C"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="215.43321" Left="0" Top="16" Width="740.409927"/>
+  </TfrxReportPage>
+</TfrxReport>

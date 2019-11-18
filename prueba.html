@@ -1,0 +1,126 @@
+<?php
+
+  include 'session.php';
+  $back_menu="clientes.php";
+  include("top.php");
+
+  include 'get_directivos.php';
+?>
+    <div class ="container ">
+
+    <div class="page-header">
+            <h1 class="text-left alice" >Niveles de Riesgo por Directivo&nbsp;</h1>
+        </div>
+
+        <div class=""> <!--RESULTADOS -->
+
+            <div class="row text-uppercase text-center" id="">
+                <div class="col-xs-4">
+                    <div class="panel panel-danger" style="border: 1px solid lightgray;">
+                        <div class="panel-heading" style="background-color: rgb(169,68,66);">
+                            <h3 class="panel-title" style="color:#eeac98;">DIRECTIVOS DE ALTO RIESGO</h3>
+                        </div>
+                        <div class="panel-body">
+                        <span data-toggle="modal" data-target="#modalListaDirectivos" data-var="1" data-titulo="DIRECTIVOS DE ALTO RIESGO">
+                            <?php echo $cant_ar; ?>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="panel panel-warning" style="border: 1px solid lightgray;">
+                        <div class="panel-heading" style="background-color:#f0ad4e;">
+                            <h3 class="panel-title" style="color:#f8d9ac;">&nbsp;DIRECTIVOS DE RIESGO MEDIO</h3>
+                        </div>
+                        <div class="panel-body">
+                        <span data-toggle="modal" data-target="#modalListaDirectivos" data-var="2" data-titulo="DIRECTIVOS DE RIESGO MEDIO">
+                            <?php echo $cant_rm; ?>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-4">
+                    <div class="panel panel-success" style="border: 1px solid lightgray;">
+                        <div class="panel-heading" style="background-color:#5cb85c;">
+                            <h3 class="panel-title" style="color:#98eea7;">DIRECTIVOS DE RIESGO BAJO</h3>
+                        </div>
+                        <div class="panel-body">
+                            <span data-toggle="modal" data-target="#modalListaSocios" data-var="3" data-titulo="DIRECTIVOS DE RIESGO BAJO">
+                            <?php echo $cant_rb; ?>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!--RESULTADOS -->
+    </div>
+
+    <div class="team-boxed" style="background-color: transparent;">
+        <div class="container menu-transparent">
+            <div class="intro">
+                <h1 class="text-center" style="color:aliceblue;">MIEMBROS DE LA JUNTA DIRECTIVA</h1>
+            </div>
+           
+            <?php 
+            
+            if(count($directivos) == 0) {
+            echo " <div class='row '><h2 style='color:aliceblue; text-align:center;'>No hay asociados marcados como directivos de la cooperativa en este momento.</h2>
+            <h4 style='color:aliceblue;text-align:center;'>Debe localizarlos en el sistema, y marcar en su ficha de información el campo 
+            'ES MIEMBRO DE LA JUNTA DIRECTIVA', y describir el cargo o comité al que corresponde.</h4>
+            ";
+            }else {
+                echo '<div class="row people ">';
+            foreach($directivos as $dire ) { ?>
+             
+                <div class="col-md-4 col-sm-6 item">
+                    <div data-bs-hover-animate="pulse" class="box">
+                    <div style="text-align:left;width: 100%;/* border: 2px solid white; */">
+                    <?php
+                        if( $dire['nivel_riesgo'] == "B") 
+                            echo "<span class='label label-success' style='font-size:100%;margin:10px 0;'>Riesgo Bajo </span> <br />";
+                        elseif( $dire['nivel_riesgo'] == "M")
+                            echo  "<span class='label label-warning' style='font-size:100%;margin:10px 0;'>Riesgo Medio </span> <br />";
+                        elseif( $dire['nivel_riesgo'] == "A")
+                            echo  "<span class='label label-danger' style='font-size:100%;margin:10px 0;'>Riesgo Alto </span> <br />";                        
+                        ?>
+                    </div>  
+                    
+                    <img class="img-circle" src="assets/img/nuevo-cliente.png">
+                     
+                    <h3 class="text-capitalize text-center name"><?php echo $dire['nombre']." ".$dire['apellido'];?></h3>
+                        <p class="title">SOCIO #<?php echo $dire['socio'];?></p>
+                        <p class="description">
+                        <?php echo $dire['identificacion']?><br/>
+                        
+                            <?php echo $dire['cargo_directivo']?><br></p>
+
+                        
+                        
+                        <div class="social">Acciones: 
+                        <a rel="tooltip" title="Ficha del Cliente" href="ficha-cliente.php?id_cliente=<?php echo $dire['id_cliente']?>"><i class="fa fa-user"></i></a>
+                        <a rel="tooltip" title="Matriz de Riesgo" href="informacion-de-riesgo.php?id_cliente=<?php echo $dire['id_cliente']?>"><i class="fa fa-table"></i></a>
+                        <a rel="tooltip" title="Alertas Financieras" href="cliente_debida_diligencia.php?id_cliente=<?php echo $dire['id_cliente']?>"><i class="fa fa-exclamation-triangle"></i></a>
+                        <a rel="tooltip" title="Checklist del Cliente"  href="boletas-financieras.php?id_cliente=<?php echo $dire['id_cliente']?>"><i class="fa fa-check-square-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            <?php }
+            }?>
+            </div>
+        </div>
+
+        
+
+        </div>
+        
+        
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+Create ODBC Data Source Administrator Shortcut
+
+A 32-bit version of Windows includes only ODBC Data Source (32-bit), which is located in C:\WINDOWS\System32\odbcad32.exe
+
+If you’re running Windows 64-bit operating system, you can access both 32-bit and 64-bit ODBC Data Source from the following locations:
+
+ODBC Data Source (64-bit) – C:\WINDOWS\System32\odbcad32.exe
+ODBC Data Source (32-bit) – C:\WINDOWS\SysWOW64\odbcad32.exe
+
+Equipo\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ODBC\ODBC.INI\COMPUCASDBF
