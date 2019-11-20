@@ -40,7 +40,7 @@ var
 
 implementation
 
-uses reportes, UtilesV20, Gen_Data_Mod;
+uses reportes, UtilesV20;
 {$R *.dfm}
 
 procedure TfGen_Scrn_Prn.FormCreate(Sender: TObject);
@@ -127,7 +127,6 @@ begin
   FormatSettings.ShortDateFormat := 'yyyy-mm-dd';
 
   sFileRep := UtilesV20.sPathReports + '\Formulario_01.fr3';
-  reportes.Report.File_Name := sFileRep;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'SELECT ';
@@ -196,6 +195,9 @@ begin
   cSql_Ln := cSql_Ln + 'LEFT JOIN cliente_impacto      ON (clientes.id_cliente=cliente_impacto.id_cliente) ';
   cSql_Ln := cSql_Ln + 'LEFT JOIN cliente_factores_riesgo rsg_fn_ter ON (clientes.id_cliente=rsg_fn_ter.id_cliente) AND (rsg_fn_ter.codigo_factores_riesgo="RC05") ';
   cSql_Ln := cSql_Ln + 'WHERE clientes.id_cliente="' + self.cCod_Cte + '" ';
+
+  reportes.Report.File_Name := sFileRep;
+
   futilesV20.LogToFile(cSql_Ln, ExcludeTrailingBackslash(ExtractFilePath(Application.ExeName)) + '\debug_sql_log.txt');
 
   reportes.Queries[1].active := true;

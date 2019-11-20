@@ -586,4 +586,18 @@ object dmGen_Data_Mod: TdmGen_Data_Mod
     Left = 98
     Top = 97
   end
+  object odClase: TDataSource
+    DataSet = otClase
+    Left = 301
+    Top = 22
+  end
+  object otClase: TFDTable
+    Filtered = True
+    IndexName = 'nombre'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'clientes_clases'
+    TableName = 'clientes_clases'
+    Left = 354
+    Top = 25
+  end
 end

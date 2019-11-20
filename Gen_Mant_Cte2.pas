@@ -26,9 +26,9 @@ type
     ResizeKit1: TResizeKit;
     GridPanel1: TGridPanel;
     AdvSmoothTabPager1: TAdvSmoothTabPager;
-    Tab_Gen_Nat: TAdvSmoothTabPage;
+    oTab_Gen_Nat: TAdvSmoothTabPage;
     oTitulo: TLabel;
-    Tab_Ref: TAdvSmoothTabPage;
+    oTab_Ref: TAdvSmoothTabPage;
     AdvGroupBox1: TAdvGroupBox;
     oFnd_Cte: TEdit;
     olFnd_Cte: TLabel;
@@ -51,7 +51,7 @@ type
     oBtn_Del_RefB: TPngBitBtn;
     Label70: TLabel;
     Label71: TLabel;
-    Tab_Eva: TAdvSmoothTabPage;
+    oTab_Eva: TAdvSmoothTabPage;
     oGrid_Rzg_Lst: TDBGridEh;
     Label72: TLabel;
     oGrid_Rzg_Cte: TDBGridEh;
@@ -103,8 +103,8 @@ type
     Label13: TLabel;
     oapellido_materno: TDBEdit;
     AdvSmoothTabPager2: TAdvSmoothTabPager;
-    AdvSmoothTabPage1: TAdvSmoothTabPage;
-    AdvSmoothTabPage2: TAdvSmoothTabPage;
+    oTab_Cte_Res: TAdvSmoothTabPage;
+    oTab_Cte_Lab: TAdvSmoothTabPage;
     Label20: TLabel;
     opais_recidencia: TDBLookupComboboxEh;
     Label21: TLabel;
@@ -117,7 +117,7 @@ type
     onombre_empresa: TDBEdit;
     onombre_segundo: TDBEdit;
     oNivel_Impacto: TLabel;
-    Tab_Gen_Jur: TAdvSmoothTabPage;
+    oTab_Gen_Jur: TAdvSmoothTabPage;
     oGrp_Info_Jur: TAdvGroupBox;
     Label67: TLabel;
     Label68: TLabel;
@@ -188,6 +188,29 @@ type
     oConn: TFDConnection;
     oLst_tipo_persona_n: TDBComboBoxEh;
     Label5: TLabel;
+    oTab_Cte_Pep: TAdvSmoothTabPage;
+    ock_pep_sujeto: TDBCheckBox;
+    Label1: TLabel;
+    opep_cargo_act: TDBEdit;
+    Label22: TLabel;
+    opep_cargo_act_ffin: TDBDateTimeEditEh;
+    Label27: TLabel;
+    opep_cargo_ant: TDBEdit;
+    Label29: TLabel;
+    opep_cargo_ant_ffin: TDBDateTimeEditEh;
+    ock_pep_relacion: TDBCheckBox;
+    Label28: TLabel;
+    Label26: TLabel;
+    opep_relacion_tipo: TDBComboBoxEh;
+    opep_relacion_cargo: TDBEdit;
+    Label30: TLabel;
+    oProcedencia_efectigo: TDBEdit;
+    Label31: TLabel;
+    onombre_comercial_pn: TDBEdit;
+    Label35: TLabel;
+    oLst_id_clasificasionN: TDBLookupComboboxEh;
+    Label36: TLabel;
+    oLst_id_clasificasionJ: TDBLookupComboboxEh;
     procedure oBtnExitClick(Sender: TObject);
     procedure oBtnFindClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -269,9 +292,9 @@ var
 
 implementation
 
-uses UtilesV20, Gen_Data_Mod, Gen_Add_Depend, Gen_Add_Activos, BuscarGenM2,
-  Gen_Add_PerF, Gen_Add_PerT, Gen_Add_RefB, Gen_Scrn_Prn, Gen_Add_RefG,
-  Gen_Add_Desc, Gen_Mant_Cte2_Sel;
+uses UtilesV20, Gen_Data_Mod, Gen_Add_Depend, Gen_Add_Activos,
+  Gen_Add_PerF, Gen_Add_PerT, Gen_Add_RefB, Gen_Scrn_Prn2, Gen_Add_RefG,
+  Gen_Add_Desc, Gen_Mant_Cte2_Sel, BuscarGenM3_2;
 {$R *.dfm}
 
 procedure TfGen_Mant_Cte2.onipExit(Sender: TObject);
@@ -632,9 +655,11 @@ begin
 
   self.AssgnTabs();
 
+  self.cCte_Sel := trim(self.oDBNavigator.DataSource.DataSet.FieldByName('id_cliente').AsString);
+  self.Sw_Interfaces_from_data;
+  self.Show_Data_Refresh();
   self.Muestra_Cte_Impacto();
 
-  self.Show_Data_Refresh();
   self.oFnd_Cte.Text := '';
   self.Enabled_Screen(false);
 
@@ -727,6 +752,10 @@ begin
     self.Action_Control(6);
     exit;
   end;
+
+  // self.Show_Data_Refresh(true, false);
+  // self.Sw_Interfaces_from_data;
+
   self.iOption := 2;
   self.cId_Empresa := IntToStr(UtilesV20.iId_Empresa);
   self.AdvSmoothTabPager1.ActivePageIndex := 1;
@@ -787,42 +816,73 @@ var
   cSql_Cmd: string;
 begin
   self.cId_Empresa := IntToStr(UtilesV20.iId_Empresa);
-  /// self.Action_Control(4);
 
+  Application.CreateForm(TfBuscarGenM3_2, fBuscarGenM3_2);
+
+  fBuscarGenM3_2.Caption := 'BUSCADOR DE CLIENTES:..';
+  fBuscarGenM3_2.Hide;
+  fBuscarGenM3_2.Color := self.oTab_Eva.PageAppearance.Color;
+  fBuscarGenM3_2.oLst_campos.Clear;
+
+  BuscarGenM3_2.oListData[1].Texto := 'Código';
+  BuscarGenM3_2.oListData[1].Campo := 'codigo';
+  BuscarGenM3_2.oListData[1].LLave := true;
+
+  BuscarGenM3_2.oListData[2].Texto := 'Nombre';
+  BuscarGenM3_2.oListData[2].Campo := 'nombre';
+  BuscarGenM3_2.oListData[2].LLave := false;
+
+  BuscarGenM3_2.oListData[3].Texto := 'N.I.P';
+  BuscarGenM3_2.oListData[3].Campo := 'nip';
+  BuscarGenM3_2.oListData[3].LLave := false;
+
+  BuscarGenM3_2.oListData[4].Texto := 'Tipo';
+  BuscarGenM3_2.oListData[4].Campo := 'tipo';
+  BuscarGenM3_2.oListData[4].LLave := false;
+
+  BuscarGenM3_2.oListData[5].Texto := 'Inactivo';
+  BuscarGenM3_2.oListData[5].Campo := 'Inactivo';
+  BuscarGenM3_2.oListData[5].LLave := false;
+
+  fBuscarGenM3_2.oSql1.Clear;
+
+  cSql_Cmd := '';
   cSql_Cmd := cSql_Cmd + 'SELECT ';
-  cSql_Cmd := cSql_Cmd + '  id_cliente, ';
-  cSql_Cmd := cSql_Cmd + '  IF(tipo_persona=1, CONCAT(UCASE(nombre_primero),"/",UCASE(apellido_paterno)),UCASE(nombre_comercial))  AS nombre, ';
-  cSql_Cmd := cSql_Cmd + '  UCASE(nip)  AS identificacion, ';
-  cSql_Cmd := cSql_Cmd + 'FROM clientes_v2 ';
-  cSql_Cmd := cSql_Cmd + 'WHERE 1=1 ';
+  cSql_Cmd := cSql_Cmd + '	c.id_cliente AS codigo, ';
+  cSql_Cmd := cSql_Cmd +
+    '	IF( ((c.nombre_legal IS NULL) OR (trim(c.nombre_legal)="")),CONCAT(ucase(c.nombre_primero),"/",ucase(c.apellido_paterno)),ucase(c.nombre_comercial)) AS nombre, ';
+  cSql_Cmd := cSql_Cmd + '	c.nip, ';
+  cSql_Cmd := cSql_Cmd + '	IF(c.tipo_persona=1,"NAT","JUR") AS tipo, ';
+  cSql_Cmd := cSql_Cmd + '	IF(inactivo=1      ,"SI","NO") AS Inactivo ';
+  cSql_Cmd := cSql_Cmd + 'FROM clientes_v2 AS c ';
 
-  Application.CreateForm(TfBuscarGenM2, fBuscarGenM2);
-  fBuscarGenM2.Hide;
-  fBuscarGenM2.oLst_campos.Clear;
+  fBuscarGenM3_2.oSql1.Lines.Add(cSql_Cmd);
 
-  BuscarGenM2.oListData[1].Texto := 'Código';
-  BuscarGenM2.oListData[1].Campo := 'id_cliente';
-  BuscarGenM2.oListData[1].LLave := true;
+  // ****************************************************************************/
+  fBuscarGenM3_2.oLabel_List.Caption := 'Tipo de Persona/Organización:';
 
-  BuscarGenM2.oListData[2].Texto := 'Nombre';
-  BuscarGenM2.oListData[2].Campo := 'nombre';
-  BuscarGenM2.oListData[2].LLave := false;
+  fBuscarGenM3_2.oLst_DefList.Clear;
+  fBuscarGenM3_2.oLst_DefList.Items.Add('*TODOS*');
+  fBuscarGenM3_2.oLst_DefList.Items.Add('Persona Natural');
+  fBuscarGenM3_2.oLst_DefList.Items.Add('Persona Jurídica');
+  fBuscarGenM3_2.oLst_DefList.KeyItems.Add('*');
+  fBuscarGenM3_2.oLst_DefList.KeyItems.Add('1');
+  fBuscarGenM3_2.oLst_DefList.KeyItems.Add('2');
 
-  BuscarGenM2.oListData[3].Texto := 'N.I.P/R.U.C.';
-  BuscarGenM2.oListData[3].Campo := 'identificacion';
-  BuscarGenM2.oListData[3].LLave := false;
+  fBuscarGenM3_2.cLst_Val_Def := '*';
+  fBuscarGenM3_2.cLst_Where_Fld := 'tipo_persona';
+  // ****************************************************************************/
 
-  fBuscarGenM2.oSql1.Clear;
-  fBuscarGenM2.oSql1.Lines.Add(cSql_Cmd);
-
-  fBuscarGenM2.ShowModal;
-  if BuscarGenM2.vFindResult <> '' then
+  fBuscarGenM3_2.ShowModal;
+  if BuscarGenM3_2.vFindResult <> '' then
   begin
-    self.cCte_Sel := BuscarGenM2.vFindResult;
-    self.otClientes_v2.Locate('id_cliente', BuscarGenM2.vFindResult, []);
-    self.Show_Data_Refresh();
+    self.cCte_Sel := BuscarGenM3_2.vFindResult;
+    self.otClientes_v2.Locate('id_cliente', BuscarGenM3_2.vFindResult, []);
+    self.Show_Data_Refresh(true, false);
+    self.Sw_Interfaces_from_data;
   end;
-  freeandnil(fBuscarGenM2);
+  freeandnil(fBuscarGenM3_2);
+  self.iOption := 0;
 end;
 
 procedure TfGen_Mant_Cte2.oBtnNewClick(Sender: TObject);
@@ -877,14 +937,14 @@ begin
   begin
     iTipPer := 1;
     self.Sw_Interfaces_n();
-    self.oSel_Pag := self.Tab_Gen_Nat;
+    self.oSel_Pag := self.oTab_Gen_Nat;
     self.onombre_primero.SetFocus;
   end
   else
   begin
     iTipPer := 2;
     self.Sw_Interfaces_j();
-    self.oSel_Pag := self.Tab_Gen_Nat;
+    self.oSel_Pag := self.oTab_Gen_Nat;
     self.onombre_legal.SetFocus;
   end;
   self.otClientes_v2.FieldByName('tipo_persona').AsInteger := iTipPer;
@@ -898,10 +958,12 @@ end;
 procedure TfGen_Mant_Cte2.oBtnPrintClick(Sender: TObject);
 begin
   self.oBtnPrint.enabled := false;
-  Application.CreateForm(TfGen_Scrn_Prn, fGen_Scrn_Prn);
-  fGen_Scrn_Prn.cCod_Cte := self.otClientes_v2.FieldByName('id_cliente').AsString;
-  fGen_Scrn_Prn.ShowModal;
-  freeandnil(fGen_Scrn_Prn);
+
+  Application.CreateForm(TfGen_Scrn_Prn2, fGen_Scrn_Prn2);
+  fGen_Scrn_Prn2.iTip_Per := self.otClientes_v2.FieldByName('tipo_persona').AsInteger;
+  fGen_Scrn_Prn2.cCod_Cte := self.otClientes_v2.FieldByName('id_cliente').AsString;
+  fGen_Scrn_Prn2.ShowModal;
+  freeandnil(fGen_Scrn_Prn2);
   self.oBtnPrint.enabled := true;
 end;
 
@@ -961,6 +1023,7 @@ begin
 
   self.Muestra_Cte_Impacto(true);
 
+  self.cCte_Sel := trim(self.oDBNavigator.DataSource.DataSet.FieldByName('id_cliente').AsString);
   self.Show_Data_Refresh(true, false);
   self.Sw_Interfaces_from_data;
   // self.oidentificacion.Properties.EditMask := '';
@@ -1383,16 +1446,16 @@ begin
     self.AdvSmoothTabPager1.ActivePageIndex := 1;
   end;
 
-  self.Fnd_Cte_Depen();
+  // self.Fnd_Cte_Depen();
   self.Fnd_Cte_Resid();
-  self.Fnd_Cte_InfoL();
+  // self.Fnd_Cte_InfoL();
   self.Fnd_Cte_Trans();
   self.Fnd_Cte_Finan();
-  self.Fnd_Cte_OrigF();
+  // self.Fnd_Cte_OrigF();
   self.Fnd_Cte_RefeB();
   self.Fnd_Cte_Refe1();
   self.Fnd_Cte_FacRi();
-  self.Fnd_Cte_Descu();
+  // self.Fnd_Cte_Descu();
 
   // self.Sw_Interfaces_n();
 end;
@@ -1888,24 +1951,24 @@ procedure TfGen_Mant_Cte2.Sw_Interfaces_j;
 begin
   // Vamos a Persona Jurídica//
   // self.oLst_tipo_persona_j.Value := 2;
-  self.Tab_Gen_Nat.TabVisible := false;
+  self.oTab_Gen_Nat.TabVisible := false;
 
-  self.Tab_Gen_Jur.TabVisible := true;
+  self.oTab_Gen_Jur.TabVisible := true;
   self.oGrp_Info_Jur.Visible := true;
   self.oGrp_Info_Jur.enabled := true;
-  self.AdvSmoothTabPager1.ActivePage := self.Tab_Gen_Jur;
+  self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
 end;
 
 procedure TfGen_Mant_Cte2.Sw_Interfaces_n;
 begin
   // Vamos a Persona Natural//
   // self.oLst_tipo_persona_n.Value := 1;
-  self.Tab_Gen_Jur.TabVisible := false;
+  self.oTab_Gen_Jur.TabVisible := false;
 
-  self.Tab_Gen_Nat.TabVisible := true;
+  self.oTab_Gen_Nat.TabVisible := true;
   self.oGrp_Info_Nat.Visible := true;
   self.oGrp_Info_Nat.enabled := true;
-  self.AdvSmoothTabPager1.ActivePage := self.Tab_Gen_Nat;
+  self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
 end;
 
 procedure TfGen_Mant_Cte2.Borra_Inf_Cliente(cCod_Cte: string);
@@ -2169,7 +2232,7 @@ begin
   if (trim(self.oid_cliente_j.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el CODIGO del cliente.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.oid_cliente_j.SetFocus;
     result := false;
     exit;
@@ -2178,7 +2241,7 @@ begin
   if (trim(self.onombre_legal.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el NOMBRE LEGAL de la empresa.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.onombre_legal.SetFocus;
     result := false;
     exit;
@@ -2187,7 +2250,7 @@ begin
   if (trim(self.onombre_comercial.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el NOMBRE COMERCIAL de la empresa.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.onombre_comercial.SetFocus;
     result := false;
     exit;
@@ -2196,7 +2259,7 @@ begin
   if (trim(self.onip2.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el RUC de la empresa.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.onip2.SetFocus;
     result := false;
     exit;
@@ -2205,8 +2268,17 @@ begin
   if ((self.oid_pais_constitucion.KeyValue = 0) OR (self.oid_pais_constitucion.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes EL PASI DE CONSTITUCION de la empresa.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.oid_pais_constitucion.SetFocus;
+    result := false;
+    exit;
+  end;
+
+  if ((self.oLst_id_clasificasionJ.KeyValue = 0) OR (self.oLst_id_clasificasionJ.KeyValue = null)) then
+  begin
+    MessageDlg('No es posible guardar sin colocar antes el TIPO DE RELACION', mtConfirmation, [mbOk], 0);
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
+    self.oLst_id_clasificasionJ.SetFocus;
     result := false;
     exit;
   end;
@@ -2214,7 +2286,7 @@ begin
   if ((self.oid_actividad_economica_e.KeyValue = 0) OR (self.oid_actividad_economica_e.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes INDICAR LA ACTIVIDAD ECONOMICA de la empresa.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Jur;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Jur;
     self.oid_actividad_economica_e.SetFocus;
     result := false;
     exit;
@@ -2237,7 +2309,7 @@ begin
   if (trim(self.oid_cliente_n.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el CODIGO del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.oid_cliente_n.SetFocus;
     result := false;
     exit;
@@ -2246,7 +2318,7 @@ begin
   if (trim(self.onombre_primero.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el NOMBRE del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.onombre_primero.SetFocus;
     result := false;
     exit;
@@ -2255,7 +2327,7 @@ begin
   if (trim(self.oapellido_paterno.Text) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes el APELLIDO del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.oapellido_paterno.SetFocus;
     result := false;
     exit;
@@ -2264,7 +2336,7 @@ begin
   if (self.ogenero.Value = '') Then
   begin
     MessageDlg('No es posible guardar sin colocar antes EL GENERO DE LA PERSONA.', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.ogenero.SetFocus;
     result := false;
     exit;
@@ -2274,7 +2346,7 @@ begin
   if (trim(cConv) = '') then
   begin
     MessageDlg('No es posible guardar sin colocar antes la IDENTIFICASION del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.onip.SetFocus;
     result := false;
     exit;
@@ -2283,8 +2355,17 @@ begin
   if ((self.opais_nacimiento.KeyValue = 0) OR (self.opais_nacimiento.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes la ACTIVIDAD ECONOMICA del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
     self.opais_nacimiento.SetFocus;
+    result := false;
+    exit;
+  end;
+
+  if ((self.oLst_id_clasificasionN.KeyValue = 0) OR (self.oLst_id_clasificasionN.KeyValue = null)) then
+  begin
+    MessageDlg('No es posible guardar sin colocar antes el TIPO DE RELACION', mtConfirmation, [mbOk], 0);
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
+    self.oLst_id_clasificasionN.SetFocus;
     result := false;
     exit;
   end;
@@ -2292,8 +2373,8 @@ begin
   if ((self.opais_recidencia.KeyValue = 0) OR (self.opais_recidencia.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes el PAIS DE RECIDENCIA FISCAL del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
-    self.AdvSmoothTabPager2.ActivePage := AdvSmoothTabPage1;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
+    self.AdvSmoothTabPager2.ActivePage := self.oTab_Cte_Res;
     self.opais_recidencia.SetFocus;
     result := false;
     exit;
@@ -2302,8 +2383,8 @@ begin
   if ((self.oprov_residencia.KeyValue = 0) OR (self.oprov_residencia.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes el PROVINCIA DE RESIDENCIA del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
-    self.AdvSmoothTabPager2.ActivePage := AdvSmoothTabPage1;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
+    self.AdvSmoothTabPager2.ActivePage := self.oTab_Cte_Res;
     self.oprov_residencia.SetFocus;
     result := false;
     exit;
@@ -2312,8 +2393,8 @@ begin
   if ((self.odist_residencia.KeyValue = 0) OR (self.odist_residencia.KeyValue = null)) then
   begin
     MessageDlg('No es posible guardar sin colocar antes el DISTRITO DE RESIDENCIA del cliente', mtConfirmation, [mbOk], 0);
-    self.AdvSmoothTabPager1.ActivePage := Tab_Gen_Nat;
-    self.AdvSmoothTabPager2.ActivePage := AdvSmoothTabPage1;
+    self.AdvSmoothTabPager1.ActivePage := self.oTab_Gen_Nat;
+    self.AdvSmoothTabPager2.ActivePage := self.oTab_Cte_Res;
     self.odist_residencia.SetFocus;
     result := false;
     exit;

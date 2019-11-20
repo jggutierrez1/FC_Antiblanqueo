@@ -62,7 +62,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
       end>
     RowCollection = <
       item
-        Value = 5.128349623226176000
+        Value = 5.128349623226175000
       end
       item
         Value = 85.125465572452580000
@@ -88,12 +88,12 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
       Fill.Glow = gmNone
       Transparent = False
       Align = alClient
-      ActivePage = Tab_Gen_Nat
+      ActivePage = oTab_Gen_Jur
       TabSettings.StartMargin = 4
       TabSettings.Height = 35
       TabReorder = False
       TabOrder = 0
-      object Tab_Gen_Nat: TAdvSmoothTabPage
+      object oTab_Gen_Nat: TAdvSmoothTabPage
         Left = 1
         Top = 35
         Width = 1286
@@ -159,14 +159,14 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         end
         object oGrp_Info_Nat: TAdvGroupBox
           Left = 58
-          Top = 36
+          Top = 18
           Width = 1170
-          Height = 578
+          Height = 614
           Caption = 'Persona Natural'
           ParentCtl3D = True
           TabOrder = 0
           object Label7: TLabel
-            Left = 23
+            Left = 14
             Top = 83
             Width = 116
             Height = 17
@@ -179,7 +179,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label8: TLabel
-            Left = 23
+            Left = 14
             Top = 124
             Width = 99
             Height = 17
@@ -192,7 +192,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label9: TLabel
-            Left = 23
+            Left = 14
             Top = 206
             Width = 105
             Height = 17
@@ -205,14 +205,14 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label10: TLabel
-            Left = 23
+            Left = 14
             Top = 289
             Width = 130
             Height = 17
             Caption = 'Apellido de Casada/o:'
           end
           object Label11: TLabel
-            Left = 23
+            Left = 14
             Top = 330
             Width = 51
             Height = 17
@@ -225,7 +225,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label12: TLabel
-            Left = 23
+            Left = 14
             Top = 371
             Width = 84
             Height = 17
@@ -246,13 +246,13 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           end
           object Label16: TLabel
             Left = 628
-            Top = 89
+            Top = 83
             Width = 80
             Height = 17
             Caption = 'Nacionalidad:'
           end
           object Label18: TLabel
-            Left = 23
+            Left = 14
             Top = 412
             Width = 127
             Height = 17
@@ -267,7 +267,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label19: TLabel
-            Left = 23
+            Left = 14
             Top = 453
             Width = 120
             Height = 17
@@ -281,7 +281,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           end
           object Label23: TLabel
             Left = 628
-            Top = 136
+            Top = 124
             Width = 160
             Height = 17
             Caption = 'N'#250'mero de Tel'#233'fono Movil:'
@@ -294,7 +294,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           end
           object Label24: TLabel
             Left = 628
-            Top = 183
+            Top = 165
             Width = 117
             Height = 17
             Caption = 'Correo electr'#243'nico*:'
@@ -307,13 +307,13 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           end
           object Label25: TLabel
             Left = 628
-            Top = 231
+            Top = 206
             Width = 98
             Height = 17
             Caption = 'Apartado postal:'
           end
           object Label32: TLabel
-            Left = 23
+            Left = 14
             Top = 165
             Width = 108
             Height = 17
@@ -326,7 +326,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label13: TLabel
-            Left = 23
+            Left = 14
             Top = 247
             Width = 110
             Height = 17
@@ -339,11 +339,50 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ParentFont = False
           end
           object Label5: TLabel
-            Left = 23
+            Left = 14
             Top = 42
             Width = 105
             Height = 17
             Caption = 'Tipo de persona*:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clMaroon
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label30: TLabel
+            Left = 14
+            Top = 532
+            Width = 235
+            Height = 17
+            Caption = 'Procedencia del efectivo o cuasiefectivo:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clMaroon
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label31: TLabel
+            Left = 14
+            Top = 574
+            Width = 114
+            Height = 17
+            Caption = 'Nombre Comercial:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clMaroon
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label35: TLabel
+            Left = 628
+            Top = 247
+            Width = 106
+            Height = 17
+            Caption = 'Tipo de Relaci'#243'n*:'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clMaroon
             Font.Height = -13
@@ -361,7 +400,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             DataSource = odClientes_v2
             MaxLength = 5
             ReadOnly = True
-            TabOrder = 0
+            TabOrder = 1
             OnExit = oid_cliente_nExit
           end
           object onombre_primero: TDBEdit
@@ -372,7 +411,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             CharCase = ecUpperCase
             DataField = 'nombre_primero'
             DataSource = odClientes_v2
-            TabOrder = 1
+            TabOrder = 2
           end
           object oapellido_paterno: TDBEdit
             Left = 254
@@ -382,7 +421,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             CharCase = ecUpperCase
             DataField = 'apellido_paterno'
             DataSource = odClientes_v2
-            TabOrder = 3
+            TabOrder = 4
           end
           object oapellido_casada: TDBEdit
             Left = 254
@@ -392,7 +431,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             CharCase = ecUpperCase
             DataField = 'apellido_casada'
             DataSource = odClientes_v2
-            TabOrder = 5
+            TabOrder = 6
           end
           object ogenero: TDBComboBoxEh
             Left = 254
@@ -414,7 +453,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               'O'
               'N')
             ShowHint = True
-            TabOrder = 6
+            TabOrder = 7
             Visible = True
           end
           object onip: TcxDBMaskEdit
@@ -435,13 +474,13 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             Properties.IgnoreMaskBlank = True
             Properties.ValidateOnEnter = False
             Properties.ValidationOptions = []
-            TabOrder = 7
+            TabOrder = 8
             OnExit = onipExit
             Width = 310
           end
           object oestado_civil: TDBComboBoxEh
             Left = 886
-            Top = 39
+            Top = 34
             Width = 251
             Height = 25
             CharCase = ecUpperCase
@@ -462,18 +501,18 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               '4'
               '0')
             ShowHint = True
-            TabOrder = 11
+            TabOrder = 14
             Visible = True
           end
           object onacionalidad: TDBEdit
             Left = 886
-            Top = 86
+            Top = 75
             Width = 251
             Height = 25
             CharCase = ecUpperCase
             DataField = 'nacionalidad'
             DataSource = odClientes_v2
-            TabOrder = 12
+            TabOrder = 15
           end
           object ofecha_nacimiento: TDBDateTimeEditEh
             Left = 254
@@ -486,7 +525,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             EditButtons = <>
             Kind = dtkDateEh
             ShowHint = True
-            TabOrder = 8
+            TabOrder = 9
             Visible = True
           end
           object opais_nacimiento: TDBLookupComboboxEh
@@ -502,38 +541,38 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             ListField = 'pais_descripcion'
             ListSource = dmGen_Data_Mod.odPais
             ShowHint = True
-            TabOrder = 9
+            TabOrder = 10
             Visible = True
           end
           object otelefono_movil: TDBEdit
             Left = 886
-            Top = 133
+            Top = 121
             Width = 250
             Height = 25
             CharCase = ecUpperCase
             DataField = 'telefono_movil'
             DataSource = odClientes_v2
-            TabOrder = 13
+            TabOrder = 16
           end
           object ocorreo_electronico: TDBEdit
             Left = 781
-            Top = 180
+            Top = 162
             Width = 355
             Height = 25
             CharCase = ecLowerCase
             DataField = 'correo_electronico'
             DataSource = odClientes_v2
-            TabOrder = 14
+            TabOrder = 17
           end
           object oapartado_postal: TDBEdit
             Left = 779
-            Top = 228
+            Top = 204
             Width = 357
             Height = 25
             CharCase = ecUpperCase
             DataField = 'apartado_postal'
             DataSource = odClientes_v2
-            TabOrder = 15
+            TabOrder = 18
           end
           object oapellido_materno: TDBEdit
             Left = 254
@@ -543,13 +582,13 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             CharCase = ecUpperCase
             DataField = 'apellido_materno'
             DataSource = odClientes_v2
-            TabOrder = 4
+            TabOrder = 5
           end
           object AdvSmoothTabPager2: TAdvSmoothTabPager
-            Left = 605
-            Top = 273
+            Left = 597
+            Top = 283
             Width = 546
-            Height = 293
+            Height = 327
             Fill.Color = 16773091
             Fill.ColorTo = 16768452
             Fill.ColorMirror = 16765357
@@ -561,15 +600,15 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             Fill.ShadowOffset = 0
             Fill.Glow = gmNone
             Transparent = False
-            ActivePage = AdvSmoothTabPage1
+            ActivePage = oTab_Cte_Pep
             TabSettings.StartMargin = 4
             TabReorder = False
-            TabOrder = 16
-            object AdvSmoothTabPage1: TAdvSmoothTabPage
+            TabOrder = 20
+            object oTab_Cte_Res: TAdvSmoothTabPage
               Left = 1
               Top = 26
               Width = 544
-              Height = 265
+              Height = 299
               Caption = 'Datos residencia'
               PageAppearance.Color = 15984090
               PageAppearance.ColorTo = 15785680
@@ -745,11 +784,11 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
                 Visible = True
               end
             end
-            object AdvSmoothTabPage2: TAdvSmoothTabPage
+            object oTab_Cte_Lab: TAdvSmoothTabPage
               Left = 1
               Top = 26
               Width = 544
-              Height = 265
+              Height = 299
               Caption = 'Datos laborales'
               PageAppearance.Color = 15984090
               PageAppearance.ColorTo = 15785680
@@ -882,6 +921,221 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
                 TabOrder = 0
               end
             end
+            object oTab_Cte_Pep: TAdvSmoothTabPage
+              Left = 1
+              Top = 26
+              Width = 544
+              Height = 299
+              Caption = 'Info. P.E.P.'
+              PageAppearance.Color = 15984090
+              PageAppearance.ColorTo = 15785680
+              PageAppearance.ColorMirror = 15587784
+              PageAppearance.ColorMirrorTo = 16774371
+              PageAppearance.GradientType = gtVertical
+              PageAppearance.GradientMirrorType = gtVertical
+              PageAppearance.BorderColor = 16765357
+              PageAppearance.Rounding = 0
+              PageAppearance.ShadowOffset = 0
+              PageAppearance.Glow = gmNone
+              TabAppearance.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Appearance.Font.Color = clBlack
+              TabAppearance.Appearance.Font.Height = -11
+              TabAppearance.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Appearance.Font.Style = []
+              TabAppearance.Status.Caption = '0'
+              TabAppearance.Status.Appearance.Fill.Color = clRed
+              TabAppearance.Status.Appearance.Fill.ColorMirror = clNone
+              TabAppearance.Status.Appearance.Fill.ColorMirrorTo = clNone
+              TabAppearance.Status.Appearance.Fill.GradientType = gtSolid
+              TabAppearance.Status.Appearance.Fill.GradientMirrorType = gtSolid
+              TabAppearance.Status.Appearance.Fill.BorderColor = clGray
+              TabAppearance.Status.Appearance.Fill.Rounding = 0
+              TabAppearance.Status.Appearance.Fill.ShadowOffset = 0
+              TabAppearance.Status.Appearance.Fill.Glow = gmNone
+              TabAppearance.Status.Appearance.Font.Charset = DEFAULT_CHARSET
+              TabAppearance.Status.Appearance.Font.Color = clWhite
+              TabAppearance.Status.Appearance.Font.Height = -11
+              TabAppearance.Status.Appearance.Font.Name = 'Tahoma'
+              TabAppearance.Status.Appearance.Font.Style = []
+              TabAppearance.BevelColor = 16765357
+              TabAppearance.BevelColorDown = 16640730
+              TabAppearance.BevelColorSelected = 16640730
+              TabAppearance.BevelColorHot = 16640730
+              TabAppearance.BevelColorDisabled = 16640730
+              TabAppearance.Color = 16773091
+              TabAppearance.ColorDown = 11196927
+              TabAppearance.ColorDisabled = 16765357
+              TMSStyle = 4
+              object Label1: TLabel
+                Left = 25
+                Top = 48
+                Width = 224
+                Height = 17
+                Caption = 'Si lo ES actualmente (Indique el cargo)'
+              end
+              object Label22: TLabel
+                Left = 281
+                Top = 49
+                Width = 106
+                Height = 17
+                Caption = 'Fecha Finalizaci'#243'n:'
+              end
+              object Label27: TLabel
+                Left = 22
+                Top = 102
+                Width = 158
+                Height = 17
+                Caption = 'Si lo FUE (Indique el cargo)'
+              end
+              object Label29: TLabel
+                Left = 281
+                Top = 103
+                Width = 106
+                Height = 17
+                Caption = 'Fecha Finalizaci'#243'n:'
+              end
+              object Label28: TLabel
+                Left = 25
+                Top = 203
+                Width = 188
+                Height = 17
+                Caption = 'Si su respuesta es s'#237', seleccione:'
+              end
+              object Label26: TLabel
+                Left = 25
+                Top = 232
+                Width = 217
+                Height = 17
+                Caption = 'Nombre del PEP relacionado y cargo'
+              end
+              object ock_pep_sujeto: TDBCheckBox
+                Left = 25
+                Top = 18
+                Width = 472
+                Height = 25
+                Caption = #191'Es o ha sido una persona pol'#237'ticamente expuesta?'
+                Color = 15984090
+                DataField = 'pep_sujeto'
+                DataSource = odClientes_v2
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -16
+                Font.Name = 'Segoe UI'
+                Font.Style = []
+                ParentColor = False
+                ParentFont = False
+                TabOrder = 0
+                ValueChecked = '1'
+                ValueUnchecked = '0'
+              end
+              object opep_cargo_act: TDBEdit
+                Left = 25
+                Top = 68
+                Width = 197
+                Height = 25
+                CharCase = ecUpperCase
+                DataField = 'pep_cargo_act'
+                DataSource = odClientes_v2
+                TabOrder = 1
+              end
+              object opep_cargo_act_ffin: TDBDateTimeEditEh
+                Left = 284
+                Top = 68
+                Width = 118
+                Height = 25
+                DataField = 'pep_cargo_act_ffin'
+                DataSource = odClientes_v2
+                DynProps = <>
+                EditButtons = <>
+                Kind = dtkDateEh
+                ShowHint = True
+                TabOrder = 2
+                Visible = True
+              end
+              object opep_cargo_ant: TDBEdit
+                Left = 25
+                Top = 122
+                Width = 197
+                Height = 25
+                CharCase = ecUpperCase
+                DataField = 'pep_cargo_ant'
+                DataSource = odClientes_v2
+                TabOrder = 3
+              end
+              object opep_cargo_ant_ffin: TDBDateTimeEditEh
+                Left = 284
+                Top = 122
+                Width = 118
+                Height = 25
+                DataField = 'pep_cargo_ant_ffin'
+                DataSource = odClientes_v2
+                DynProps = <>
+                EditButtons = <>
+                Kind = dtkDateEh
+                ShowHint = True
+                TabOrder = 4
+                Visible = True
+              end
+              object ock_pep_relacion: TDBCheckBox
+                Left = 25
+                Top = 168
+                Width = 472
+                Height = 25
+                Caption = #191'Tiene o tuvo relaci'#243'n con una Persona Pol'#237'ticamente Expuesta?'
+                Color = 15984090
+                DataField = 'pep_relacion'
+                DataSource = odClientes_v2
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWindowText
+                Font.Height = -16
+                Font.Name = 'Segoe UI'
+                Font.Style = []
+                ParentColor = False
+                ParentFont = False
+                TabOrder = 5
+                ValueChecked = '1'
+                ValueUnchecked = '0'
+              end
+              object opep_relacion_tipo: TDBComboBoxEh
+                Left = 237
+                Top = 201
+                Width = 251
+                Height = 25
+                DataField = 'pep_relacion_tipo'
+                DataSource = odClientes_v2
+                DynProps = <>
+                EditButtons = <>
+                Items.Strings = (
+                  'C'#243'nyugue'
+                  'Padre'
+                  'Madre'
+                  'Hermano/a'
+                  'Hijo/a'
+                  'Estrecho Colaborador'
+                  'S/N (Sin asignaci'#243'n)')
+                KeyItems.Strings = (
+                  'C'#243'nyugue'
+                  'Padre'
+                  'Madre'
+                  'Hermano/a'
+                  'Hijo/a'
+                  'Estrecho Colaborador'
+                  ' ')
+                ShowHint = True
+                TabOrder = 6
+                Visible = True
+              end
+              object opep_relacion_cargo: TDBEdit
+                Left = 25
+                Top = 255
+                Width = 472
+                Height = 25
+                CharCase = ecUpperCase
+                DataField = 'pep_relacion_cargo'
+                DataSource = odClientes_v2
+                TabOrder = 7
+              end
+            end
           end
           object onombre_segundo: TDBEdit
             Left = 254
@@ -891,7 +1145,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             CharCase = ecUpperCase
             DataField = 'nombre_segundo'
             DataSource = odClientes_v2
-            TabOrder = 2
+            TabOrder = 3
           end
           object odoble_nacionalidad: TDBCheckBox
             Left = 254
@@ -907,14 +1161,14 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            TabOrder = 10
+            TabOrder = 11
             ValueChecked = '1'
             ValueUnchecked = '0'
           end
           object oLst_tipo_persona_n: TDBComboBoxEh
             Tag = 2
             Left = 254
-            Top = 35
+            Top = 34
             Width = 310
             Height = 25
             DataField = 'tipo_persona'
@@ -928,12 +1182,48 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               '1'
               '2')
             ShowHint = True
-            TabOrder = 17
+            TabOrder = 0
+            Visible = True
+          end
+          object oProcedencia_efectigo: TDBEdit
+            Left = 254
+            Top = 529
+            Width = 310
+            Height = 25
+            CharCase = ecUpperCase
+            DataField = 'procedencia_efectigo'
+            DataSource = odClientes_v2
+            TabOrder = 12
+          end
+          object onombre_comercial_pn: TDBEdit
+            Left = 254
+            Top = 571
+            Width = 310
+            Height = 25
+            CharCase = ecUpperCase
+            DataField = 'nombre_comercial'
+            DataSource = odClientes_v2
+            TabOrder = 13
+          end
+          object oLst_id_clasificasionN: TDBLookupComboboxEh
+            Left = 779
+            Top = 244
+            Width = 357
+            Height = 25
+            DynProps = <>
+            DataField = 'id_clasificasion'
+            DataSource = odClientes_v2
+            EditButtons = <>
+            KeyField = 'id_clase'
+            ListField = 'nombre'
+            ListSource = dmGen_Data_Mod.odClase
+            ShowHint = True
+            TabOrder = 19
             Visible = True
           end
         end
       end
-      object Tab_Gen_Jur: TAdvSmoothTabPage
+      object oTab_Gen_Jur: TAdvSmoothTabPage
         Left = 1
         Top = 35
         Width = 1286
@@ -979,9 +1269,9 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         TabAppearance.ColorDisabled = 16765357
         TMSStyle = 4
         object oGrp_Info_Jur: TAdvGroupBox
-          Left = 81
-          Top = 16
-          Width = 1120
+          Left = 58
+          Top = 18
+          Width = 1170
           Height = 614
           Align = alCustom
           Caption = 'Persona Jur'#237'dica'
@@ -1196,6 +1486,19 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             Font.Style = []
             ParentFont = False
           end
+          object Label36: TLabel
+            Left = 581
+            Top = 260
+            Width = 106
+            Height = 17
+            Caption = 'Tipo de Relaci'#243'n*:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clMaroon
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
           object onombre_legal: TDBEdit
             Left = 215
             Top = 126
@@ -1291,7 +1594,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           object oid_actividad_economica_e: TDBLookupComboboxEh
             Left = 806
             Top = 40
-            Width = 250
+            Width = 315
             Height = 25
             DynProps = <>
             DataField = 'id_actividad_economica'
@@ -1307,7 +1610,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           object ofax: TDBEdit
             Left = 806
             Top = 83
-            Width = 250
+            Width = 315
             Height = 25
             CharCase = ecUpperCase
             DataField = 'fax'
@@ -1317,7 +1620,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           object otelefono2: TDBEdit
             Left = 806
             Top = 125
-            Width = 250
+            Width = 315
             Height = 25
             CharCase = ecUpperCase
             DataField = 'telefono'
@@ -1327,7 +1630,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           object ocorreo_electronico_e: TDBEdit
             Left = 806
             Top = 169
-            Width = 250
+            Width = 315
             Height = 25
             CharCase = ecLowerCase
             DataField = 'correo_electronico'
@@ -1337,7 +1640,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           object oapartado_postal2: TDBEdit
             Left = 806
             Top = 212
-            Width = 250
+            Width = 315
             Height = 25
             CharCase = ecUpperCase
             DataField = 'apartado_postal'
@@ -1377,7 +1680,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           end
           object AdvSmoothTabPager3: TAdvSmoothTabPager
             Left = 536
-            Top = 274
+            Top = 310
             Width = 561
             Height = 291
             Fill.Color = 16773091
@@ -1396,7 +1699,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             TabTextOrientation = toHorizontal
             TabSettings.StartMargin = 4
             TabReorder = False
-            TabOrder = 16
+            TabOrder = 17
             object oTab_Repre: TAdvSmoothTabPage
               Left = 1
               Top = 26
@@ -1729,9 +2032,25 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             DataSource = odClientes_v2
             TabOrder = 10
           end
+          object oLst_id_clasificasionJ: TDBLookupComboboxEh
+            Left = 806
+            Top = 255
+            Width = 315
+            Height = 25
+            DynProps = <>
+            DataField = 'id_clasificasion'
+            DataSource = odClientes_v2
+            EditButtons = <>
+            KeyField = 'id_clase'
+            ListField = 'nombre'
+            ListSource = dmGen_Data_Mod.odClase
+            ShowHint = True
+            TabOrder = 16
+            Visible = True
+          end
         end
       end
-      object Tab_Ref: TAdvSmoothTabPage
+      object oTab_Ref: TAdvSmoothTabPage
         Left = 1
         Top = 35
         Width = 1286
@@ -1790,8 +2109,8 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           ParentFont = False
         end
         object Label71: TLabel
-          Left = 18
-          Top = 333
+          Left = 22
+          Top = 322
           Width = 185
           Height = 21
           Caption = 'REFERENCIAS BANCARIAS'
@@ -2123,7 +2442,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             59A862CE3B38480000000049454E44AE426082}
         end
       end
-      object Tab_Eva: TAdvSmoothTabPage
+      object oTab_Eva: TAdvSmoothTabPage
         Left = 1
         Top = 35
         Width = 1286
@@ -3171,7 +3490,6 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
       'Database=fc_anti_bl'
       'Server=localhost'
       'User_Name=root')
-    Connected = True
     LoginPrompt = False
     Left = 378
     Top = 688

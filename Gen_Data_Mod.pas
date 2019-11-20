@@ -81,6 +81,8 @@ type
     oQry_Cte_De: TFDQuery;
     odCte_Cat: TDataSource;
     otCte_Cat: TFDTable;
+    odClase: TDataSource;
+    otClase: TFDTable;
     procedure DataModuleCreate(Sender: TObject);
     procedure Init_Conection;
     procedure Open_All_DataGen();
@@ -120,6 +122,7 @@ begin
   self.otFacR.Connection := fUtilesV20.oPublicCnn;
   self.otTipDe.Connection := fUtilesV20.oPublicCnn;
   self.otCte_Cat.Connection := fUtilesV20.oPublicCnn;
+  self.otClase.Connection := fUtilesV20.oPublicCnn;
 
   self.oQry_Ultimos.Connection := fUtilesV20.oPublicCnn;
   self.otClientes.Connection := fUtilesV20.oPublicCnn;
@@ -260,6 +263,12 @@ begin
   self.otTipDe.Filtered := false;
   self.otTipDe.Open;
   self.odTipDe.DataSet := self.otTipDe;
+
+  self.otClase.Close;
+  self.otClase.Filter := '';
+  self.otClase.Filtered := false;
+  self.otClase.Open;
+  self.odClase.DataSet := self.otClase;
 end;
 
 procedure TdmGen_Data_Mod.DataModuleCreate(Sender: TObject);

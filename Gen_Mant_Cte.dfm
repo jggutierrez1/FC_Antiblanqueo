@@ -49,7 +49,7 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
       end>
     RowCollection = <
       item
-        Value = 5.128349623226176000
+        Value = 5.128349623226175000
       end
       item
         Value = 85.125465572452580000
@@ -75,7 +75,7 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
       Fill.Glow = gmNone
       Transparent = False
       Align = alClient
-      ActivePage = Tab_Gen
+      ActivePage = Tab_Ref
       TabSettings.StartMargin = 4
       TabSettings.Height = 35
       TabReorder = False

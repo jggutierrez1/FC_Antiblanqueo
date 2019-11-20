@@ -59,7 +59,9 @@ uses
   Gen_MantQ_Act in 'Gen_MantQ_Act.pas' {fGen_MantQ_Act},
   Gen_MantC_ChL in 'Gen_MantC_ChL.pas' {fGen_MantC_ChL},
   Show_Matriz_Cte in 'Show_Matriz_Cte.pas' {fShow_Matriz_Cte},
-  Gen_Mant_Cte2_Sel in 'Gen_Mant_Cte2_Sel.pas' {fGen_Mant_Cte2_Sel};
+  Gen_Mant_Cte2_Sel in 'Gen_Mant_Cte2_Sel.pas' {fGen_Mant_Cte2_Sel},
+  BuscarGenM3_2 in 'BuscarGenM3_2.pas' {fBuscarGenM3_2},
+  Gen_Scrn_Prn2 in 'Gen_Scrn_Prn2.pas' {fGen_Scrn_Prn2};
 
 {$R *.res}
 
