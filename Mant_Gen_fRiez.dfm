@@ -1218,7 +1218,6 @@ object fMant_Gen_fRiez: TfMant_Gen_fRiez
       'Database=fc_anti_bl'
       'Server=localhost'
       'User_Name=root')
-    Connected = True
     LoginPrompt = False
     Left = 562
     Top = 601

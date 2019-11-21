@@ -327,13 +327,11 @@ object fGen_Add_Desc: TfGen_Add_Desc
       'Database=fc_anti_bl'
       'Server=localhost'
       'User_Name=root')
-    Connected = True
     LoginPrompt = False
     Left = 129
     Top = 28
   end
   object oQry_De: TFDQuery
-    Active = True
     Connection = oConn
     SQL.Strings = (
       'SELECT *'

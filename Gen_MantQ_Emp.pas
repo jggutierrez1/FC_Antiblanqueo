@@ -94,8 +94,16 @@ begin
   self.oBtn_Update.Enabled := false;
   self.oBtn_Salir.Enabled := false;
 
-  cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Emp(' + trim(IntToStr(utilesv20.iUserID)) + ')';
-  utilesv20.Execute_SQL_Command(cSql_Ln);
+  if (utilesv20.bEsCooperatiba = true) then
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Emp(' + trim(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end
+  else
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Emp2(' + trim(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'UPDATE `mant_tipos_empleados` SET ';
@@ -125,7 +133,7 @@ begin
     begin
       self.oQry_Epl.FieldByName('tipem_prob').AsInteger := fGen_Pop_Pon.iNiv_Prob;
       self.oQry_Epl.FieldByName('tipem_impa').AsInteger := fGen_Pop_Pon.iNiv_Impa;
-      //self.oQry_Epl.FieldByName('tipem_riesgo').AsInteger := (self.oQry_Epl.FieldByName('tipem_prob').AsInteger * self.oQry_Epl.FieldByName('tipem_impa').AsInteger);
+      // self.oQry_Epl.FieldByName('tipem_riesgo').AsInteger := (self.oQry_Epl.FieldByName('tipem_prob').AsInteger * self.oQry_Epl.FieldByName('tipem_impa').AsInteger);
 
       if ((fGen_Pop_Pon.iNiv_Prob = 0) AND (fGen_Pop_Pon.iNiv_Impa = 0)) THEN
         self.oQry_Epl.FieldByName('tipem_riesgo_chg').AsInteger := 0
@@ -138,7 +146,7 @@ begin
     begin
       self.oQry_Epl.FieldByName('tipem_prob').AsInteger := 0;
       self.oQry_Epl.FieldByName('tipem_impa').AsInteger := 0;
-      //self.oQry_Epl.FieldByName('tipem_riesgo').AsInteger := 0;
+      // self.oQry_Epl.FieldByName('tipem_riesgo').AsInteger := 0;
       self.oQry_Epl.FieldByName('tipem_riesgo_chg').AsInteger := 0;
     end;
     self.oQry_Epl.post;

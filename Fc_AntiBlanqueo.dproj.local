@@ -10,11 +10,11 @@
     <Transaction>2019/08/19 10:42:37.000.257,C:\Shared\Rep_Dev\FC_Antiblaqueo\main.dfm=C:\Shared\Rep_Dev\FC_Antiblaqueo\Gen_Main.dfm</Transaction>
     <Transaction>2019/08/19 10:42:37.000.257,C:\Shared\Rep_Dev\FC_Antiblaqueo\main.pas=C:\Shared\Rep_Dev\FC_Antiblaqueo\Gen_Main.pas</Transaction>
     <Transaction>2019/08/19 10:52:42.000.668,=C:\Shared\Rep_Dev\FC_Antiblaqueo\About.pas</Transaction>
-    <Transaction>2019/08/19 10:53:18.000.713,=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGen.pas</Transaction>
+    <Transaction>2019/08/19 10:53:18.000.256,=C:\Shared\Rep_Dev\FC_Antiblaqueo\AdjustGrid.pas</Transaction>
     <Transaction>2019/08/19 10:53:18.000.321,=C:\Shared\Rep_Dev\FC_Antiblaqueo\Base64.pas</Transaction>
     <Transaction>2019/08/19 10:53:18.000.057,=C:\Shared\Rep_Dev\FC_Antiblaqueo\acceso.pas</Transaction>
     <Transaction>2019/08/19 10:53:18.000.290,=C:\Shared\Rep_Dev\FC_Antiblaqueo\AdjustGridEh.pas</Transaction>
-    <Transaction>2019/08/19 10:53:18.000.256,=C:\Shared\Rep_Dev\FC_Antiblaqueo\AdjustGrid.pas</Transaction>
+    <Transaction>2019/08/19 10:53:18.000.713,=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGen.pas</Transaction>
     <Transaction>2019/08/19 10:53:18.000.223,=C:\Shared\Rep_Dev\FC_Antiblaqueo\acceso1.pas</Transaction>
     <Transaction>2019/08/19 10:53:19.000.615,=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenM2.pas</Transaction>
     <Transaction>2019/08/19 10:53:19.000.310,=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenM.pas</Transaction>
@@ -153,7 +153,7 @@
     <Transaction>2019/11/18 17:19:39.000.584,C:\Shared\Rep_Dev\FC_Antiblaqueo\Unit1.pas=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenCte.pas</Transaction>
     <Transaction>2019/11/18 17:47:25.000.147,C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenCte.pas=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenM3_2.pas</Transaction>
     <Transaction>2019/11/18 17:47:25.000.147,C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenCte.dfm=C:\Shared\Rep_Dev\FC_Antiblaqueo\BuscarGenM3_2.dfm</Transaction>
-    <Transaction>2019/11/20 14:24:02.583,=C:\Shared\Rep_Dev\FC_Antiblaqueo\Gen_Scrn_Prn2.pas</Transaction>
+    <Transaction>2019/11/20 14:24:02.000.583,=C:\Shared\Rep_Dev\FC_Antiblaqueo\Gen_Scrn_Prn2.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="-1" SortType="0">
 	</ProjectSortOrder>

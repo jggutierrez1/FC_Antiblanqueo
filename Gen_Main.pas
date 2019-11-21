@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvSmoothButton, Vcl.StdCtrls, Vcl.Imaging.jpeg, Vcl.ComCtrls, Vcl.ExtCtrls,
-  AdvGroupBox, ResizeKit, Vcl.Menus, ShellApi, inifiles;
+  AdvGroupBox, ResizeKit, Vcl.Menus, ShellApi;
 
 type
   TfGen_Main = class(TForm)
@@ -110,8 +110,6 @@ type
     FGraphic: TGraphic;
     bSend_Kill: boolean;
     { Private declarations }
-    oMain_Ini: TINIFile;
-    cIni_File, cIni_Path: string;
   public
     { Public declarations }
   end;
@@ -137,8 +135,7 @@ begin
   self.oBtn_Asoc.Enabled := false;
   self.Visible := false;
 
-  self.oMain_Ini := TINIFile.Create(self.cIni_File);
-  if (self.oMain_Ini.ReadInteger('GENERAL', 'Cooperativa', 0) = 1) then
+  if (UtilesV20.bEsCooperatiba = true) then
   begin
     Application.CreateForm(TfGen_Scrn_Ctes, fGen_Scrn_Ctes);
     fGen_Scrn_Ctes.ShowModal;
@@ -150,7 +147,6 @@ begin
     fGen_Mant_Cte2.ShowModal;
     freeandnil(fGen_Mant_Cte2);
   end;
-  self.oMain_Ini.Free;
 
   self.Visible := true;
   self.oBtn_Asoc.Enabled := true;
@@ -312,7 +308,6 @@ end;
 
 procedure TfGen_Main.FormCreate(Sender: TObject);
 begin
-  self.cIni_File := self.cIni_Path + 'Data\Config.ini';
   Application.CreateForm(TdmGen_Data_Mod, dmGen_Data_Mod);
   dmGen_Data_Mod.Init_Conection();
 

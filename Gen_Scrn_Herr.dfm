@@ -169,7 +169,6 @@ object fGen_Scrn_Herr: TfGen_Scrn_Herr
       item
         Width = 150
       end>
-    ExplicitTop = 667
   end
   object AdvGroupBox1: TAdvGroupBox
     Left = 154

@@ -789,10 +789,6 @@ object fGen_Calendario: TfGen_Calendario
     object oTabGeneral: TTabSheet
       Caption = 'Lista general'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBGridEh1: TDBGridEh
         Left = 0
         Top = 0
@@ -1081,25 +1077,25 @@ object fGen_Calendario: TfGen_Calendario
         LineColor = clGray
         Line3D = True
         Look = lookFlat
-        NameOfDays.Monday = 'Mon'
-        NameOfDays.Tuesday = 'Tue'
-        NameOfDays.Wednesday = 'Wed'
-        NameOfDays.Thursday = 'Thu'
-        NameOfDays.Friday = 'Fri'
-        NameOfDays.Saturday = 'Sat'
-        NameOfDays.Sunday = 'Sun'
-        NameOfMonths.January = 'Jan'
-        NameOfMonths.February = 'Feb'
-        NameOfMonths.March = 'Mar'
-        NameOfMonths.April = 'Apr'
-        NameOfMonths.May = 'May'
-        NameOfMonths.June = 'Jun'
-        NameOfMonths.July = 'Jul'
-        NameOfMonths.August = 'Aug'
-        NameOfMonths.September = 'Sep'
-        NameOfMonths.October = 'Oct'
-        NameOfMonths.November = 'Nov'
-        NameOfMonths.December = 'Dec'
+        NameOfDays.Monday = 'lun.'
+        NameOfDays.Tuesday = 'mar.'
+        NameOfDays.Wednesday = 'mi'#233'.'
+        NameOfDays.Thursday = 'jue.'
+        NameOfDays.Friday = 'vie.'
+        NameOfDays.Saturday = 's'#225'b.'
+        NameOfDays.Sunday = 'dom.'
+        NameOfMonths.January = 'ene.'
+        NameOfMonths.February = 'feb.'
+        NameOfMonths.March = 'mar.'
+        NameOfMonths.April = 'abr.'
+        NameOfMonths.May = 'may.'
+        NameOfMonths.June = 'jun.'
+        NameOfMonths.July = 'jul.'
+        NameOfMonths.August = 'ago.'
+        NameOfMonths.September = 'sep.'
+        NameOfMonths.October = 'oct.'
+        NameOfMonths.November = 'nov.'
+        NameOfMonths.December = 'dic.'
         NameOfMonths.UseIntlNames = True
         WeekFont.Charset = DEFAULT_CHARSET
         WeekFont.Color = clWindowText
@@ -1148,10 +1144,6 @@ object fGen_Calendario: TfGen_Calendario
     object oTabAudit: TTabSheet
       Caption = 'Auditor'#237'a'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label16: TLabel
         Left = 27
         Top = 32

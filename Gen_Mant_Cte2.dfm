@@ -88,7 +88,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
       Fill.Glow = gmNone
       Transparent = False
       Align = alClient
-      ActivePage = oTab_Gen_Jur
+      ActivePage = oTab_Eva
       TabSettings.StartMargin = 4
       TabSettings.Height = 35
       TabReorder = False
@@ -1027,6 +1027,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
                 TabOrder = 0
                 ValueChecked = '1'
                 ValueUnchecked = '0'
+                OnClick = ock_pep_sujetoClick
               end
               object opep_cargo_act: TDBEdit
                 Left = 25
@@ -1095,6 +1096,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
                 TabOrder = 5
                 ValueChecked = '1'
                 ValueUnchecked = '0'
+                OnClick = ock_pep_relacionClick
               end
               object opep_relacion_tipo: TDBComboBoxEh
                 Left = 237
@@ -2489,7 +2491,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         TMSStyle = 4
         object Label72: TLabel
           Left = 17
-          Top = 23
+          Top = 5
           Width = 572
           Height = 42
           Caption = 
@@ -2505,7 +2507,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         end
         object Label73: TLabel
           Left = 685
-          Top = 23
+          Top = 5
           Width = 502
           Height = 21
           Caption = 'LISTADO DE FACTORES DE RIEZGO ASIGNADOS AL CLIENTE/SOCIO:'
@@ -2545,11 +2547,39 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
           ParentFont = False
           WordWrap = True
         end
+        object Label37: TLabel
+          Left = 24
+          Top = 604
+          Width = 148
+          Height = 21
+          Caption = 'Check Lists de Tareas:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          WordWrap = True
+        end
+        object Label38: TLabel
+          Left = 312
+          Top = 604
+          Width = 189
+          Height = 21
+          Caption = 'Matriz de riesgo del cliente:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+          WordWrap = True
+        end
         object oGrid_Rzg_Lst: TDBGridEh
           Left = 17
-          Top = 69
+          Top = 53
           Width = 572
-          Height = 562
+          Height = 519
           AutoFitColWidths = True
           DataSource = dmGen_Data_Mod.odFacR
           DynProps = <>
@@ -2571,7 +2601,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               CellButtons = <>
               DynProps = <>
               EditButtons = <>
-              FieldName = 'factores_riesgo_nombre'
+              FieldName = 'descripcion'
               Footers = <>
               MaxWidth = 550
               MinWidth = 550
@@ -2588,7 +2618,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               CellButtons = <>
               DynProps = <>
               EditButtons = <>
-              FieldName = 'codigo_factor'
+              FieldName = 'codigo'
               Footers = <>
               MaxWidth = 1
               MinWidth = 1
@@ -2599,9 +2629,9 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         end
         object oGrid_Rzg_Cte: TDBGridEh
           Left = 685
-          Top = 69
+          Top = 50
           Width = 584
-          Height = 562
+          Height = 519
           AutoFitColWidths = True
           DataSource = dmGen_Data_Mod.oD_Cte_FR
           DynProps = <>
@@ -2622,7 +2652,7 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
               CellButtons = <>
               DynProps = <>
               EditButtons = <>
-              FieldName = 'factores_riesgo_nombre'
+              FieldName = 'descripcion'
               Footers = <>
               Title.Alignment = taLeftJustify
               Title.Caption = 'Descripci'#243'n del Factor'
@@ -2784,6 +2814,62 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
             0142F8E22410FA81FD46E34158B6CC254481F75F9D0D05004FDD932F4F0F27FD
             0F0C31BF5F108341230000000049454E44AE426082}
         end
+        object oBtn_ChekList: TPngBitBtn
+          Tag = 1
+          Left = 192
+          Top = 578
+          Width = 82
+          Height = 69
+          TabOrder = 4
+          OnClick = oBtn_ChekListClick
+          PngImage.Data = {
+            89504E470D0A1A0A0000000D4948445200000020000000200806000000737A7A
+            F400000006624B474400FF00FF00FFA0BDA793000001A94944415478DADD963D
+            2845611880DF1B2662315C4448B29014252C4AFEC2A048323019FD24CA649051
+            28299BD14806965B4A5D45122993DC2C58FC0DCA0DCFD7776EE9F4DD5374BE73
+            F1D6339CF3BD9DEFE97C3FEF1B12911B2890E411857AB11421F8801938368CB7
+            413F14DA166885BD2FEFB3600D4E602C08816E28851548836DA88065187709E4
+            40994FF33F2704D424F3B003AFD0098DA2D77ECE25D0055B3E0944BE2EC183F3
+            E16C68810318310864885E223F22EEDE0325500EBB4E8249C0D748082CC18561
+            BC019A6D0B1C42AE47CE39F4D8144869FC0A815928F2C83985559B026A13EEC3
+            AD615C9D8AB0A4E02A565103D512D0315402AAEA3D39EF076003166038088129
+            D115B10FD245D702F5FC68F8034DB0E8D3FC47098176E8805178135D0927C57C
+            13AA42D4EB9340CCBD0754E9AD8521789700AF62D32694A004E2A27B8064710D
+            C53605EA4497E064712FFA32B22690D25002AA230E7BE4C49CBF604DE005323D
+            722E45F787D604D42950E73A62181F8469F9EFC7F0BB02F9A25B353FE2EE2702
+            AA475CF74920FA2797C08AC0265C19C6ABA0D2B6806A3CF23C72CE60C296C027
+            89C567E75FEB53F00000000049454E44AE426082}
+        end
+        object oBtn_MatrizR: TPngBitBtn
+          Tag = 1
+          Left = 507
+          Top = 578
+          Width = 82
+          Height = 69
+          TabOrder = 5
+          OnClick = oBtn_MatrizRClick
+          PngImage.Data = {
+            89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+            8700000006624B474400FF00FF00FFA0BDA7930000022F4944415478DA636418
+            E28071A01D30EA818176C0A807903909B5DDFF07DA41C48005CDA570778F7A60
+            D403D4F400089CBF7167507BC2504305C5CDA31E18F5C060F08044D84486BFE2
+            FC0C3FCC5518BEFA1831FC13E01A5A1E90726B87B3FF73B232BC2FF466F8E1A0
+            8955EDC133974832DBDE448F7A1EF8FFFE2BC3EF8DA718FE9CB8CDF0EFE50706
+            9EF565181E8098CAC8F0AE2E90E187B5FAE0F1C0EF3D97187EF66C62F8FFE337
+            5C8CF74023760F00C13F1E0E86570B3218FEF17192E46042802C0FFC397095E1
+            7BE36A6014A04AE1F300087C8EB50162DB81F5C0FF0F5F19BE444F6460F8FA13
+            C330421EF8AD22CEF07A5A128A18B149083DE990ED819FF3F631FC5A7410AB61
+            843CF09F938DE1F9C6E281F5C0D7E4E90CFFEEBEC0EB017A02923DF0C5B395E1
+            FFF75FC3D303B80023171B03CFB66AAC72742F46F125215C80595592816B76C6
+            E0F000BE4C8C0BB0273830B0253892A4875840D562141B60045660DCCB0A1818
+            A95C8191ED0110C0559161BA9E9181A3298C81D5560BA712BA17A33080AD2981
+            6210B0CC672FF5676075D2C1EBB001F300082037E6FEDE7F05166356146360B1
+            546360F537656014E026CA719480D10ECD4083510F0C34C0EB81213FB035E43D
+            406D60EEEE0F0E90933B37D2CC9E510F0C5B0F24D674F9FCFAF57333A8F9C4C6
+            CEEEBDA0A56CDB90F200B0407804A464A1DC87C08CA730D43CF004484943B98F
+            811E901B521E0025A1FF8C8C3381CCFFC06678DA904B42F402A31E186830EA81
+            810643DE0300A13D47407BD8525E0000000049454E44AE426082}
+        end
       end
     end
     object oTitulo: TLabel
@@ -2818,16 +2904,16 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
         1288
         80)
       object olFnd_Cte: TLabel
-        Left = 831
-        Top = 3
-        Width = 138
+        Left = 692
+        Top = 13
+        Width = 160
         Height = 17
-        Caption = 'B'#250'squeda R'#225'pida Socio'
+        Caption = 'B'#250'squeda R'#225'pida (C'#243'digo):'
       end
       object oFnd_Cte: TEdit
         Tag = 1
-        Left = 831
-        Top = 22
+        Left = 858
+        Top = 10
         Width = 137
         Height = 25
         Color = 12582911
@@ -3382,8 +3468,8 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
       end
       object oDBNavigator: TDBNavigator
         Tag = 1
-        Left = 791
-        Top = 52
+        Left = 813
+        Top = 39
         Width = 225
         Height = 32
         DataSource = odClientes_v2
@@ -3431,8 +3517,8 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
     DesignDpiH = 96
   end
   object oPop_Buscadores: TPopupMenu
-    Left = 34
-    Top = 747
+    Left = 546
+    Top = 219
     object ONU1: TMenuItem
       Caption = 'BUSCADOR -> ONU'
       OnClick = ONU1Click
@@ -3493,5 +3579,10 @@ object fGen_Mant_Cte2: TfGen_Mant_Cte2
     LoginPrompt = False
     Left = 378
     Top = 688
+  end
+  object oFnd_Qry_Gen: TFDQuery
+    Connection = fUtilesV20.oPublicCnn
+    Left = 713
+    Top = 754
   end
 end

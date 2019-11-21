@@ -378,6 +378,7 @@ type
   public
     { Public declarations }
     pCod_Cte: string;
+    bCte_Depen, bCte_Resid, bCte_InfoL, bCte_Trans, bCte_Finan, bCte_OrigF, bCte_FacRi, bCte_Descu: boolean;
   end;
 
 var
@@ -464,11 +465,17 @@ begin
         if (dmGen_Data_Mod.otClientes.State in [dsInsert, dsEdit]) then
           dmGen_Data_Mod.otClientes.cancel;
 
-        if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
-          dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+        if (bCte_Resid = true) then
+        begin
+          if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+            dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+        end;
 
-        if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
-          dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+        if (bCte_InfoL = true) then
+        begin
+          if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+            dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+        end;
 
         self.cCte_Fnd := cValue;
         self.cCte_Sel := trim(self.cCte_Fnd);
@@ -505,11 +512,17 @@ begin
         if (dmGen_Data_Mod.otClientes.State in [dsInsert, dsEdit]) then
           dmGen_Data_Mod.otClientes.cancel;
 
-        if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
-          dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+        if (bCte_Resid = true) then
+        begin
+          if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+            dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+        end;
 
-        if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
-          dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+        if (bCte_InfoL = true) then
+        begin
+          if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+            dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+        end;
 
         self.cCte_Fnd := cValue;
         self.cCte_Sel := self.cCte_Fnd;
@@ -821,6 +834,15 @@ begin
   self.cCte_Sel := '';
   self.cTmp_Sec := fUtilesV20.RandomPassword(10);
 
+  self.bCte_Resid := true;
+  self.bCte_InfoL := true;
+  self.bCte_Trans := true;
+  self.bCte_Finan := true;
+  self.bCte_OrigF := true;
+  self.bCte_Depen := true;
+  self.bCte_FacRi := true;
+  self.bCte_Descu := true;
+
   dmGen_Data_Mod.Open_All_DataGen();
   dmGen_Data_Mod.Open_All_DataQryRef();
 
@@ -925,11 +947,17 @@ procedure TfGen_Mant_Cte.oBtnAbortClick(Sender: TObject);
 var
   ctCod_Cte: string;
 begin
-  if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
-    dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+  if (bCte_Resid = true) then
+  begin
+    if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+      dmGen_Data_Mod.oQry_Cte_Resid.cancel;
+  end;
 
-  if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
-    dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+  if (bCte_InfoL = true) then
+  begin
+    if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+      dmGen_Data_Mod.oQry_Cte_InfL.cancel;
+  end;
 
   ctCod_Cte := trim(dmGen_Data_Mod.otClientes.FieldByName('id_cliente').AsString);
   self.Cte_Borra_Tmp_Asig(ctCod_Cte);
@@ -1152,6 +1180,7 @@ begin
   dmGen_Data_Mod.otClientes.FieldByName('pep_relacion_tipo').AsString := '';
   dmGen_Data_Mod.otClientes.FieldByName('pep_relacion_cargo').AsString := '';
 
+  if (bCte_Resid = true) then
   begin
     dmGen_Data_Mod.oQry_Cte_Resid.Insert;
     dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_cliente').AsString := self.cCte_Sel;
@@ -1162,6 +1191,7 @@ begin
     dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_tipo_vivienda').AsInteger := 0;
   end;
 
+  if (bCte_InfoL = true) then
   begin
     dmGen_Data_Mod.oQry_Cte_InfL.Insert;
     dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_cliente').AsString := self.cCte_Sel;
@@ -1331,11 +1361,17 @@ begin
 
   self.Asingar_Cod_Cte();
 
-  if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
-    dmGen_Data_Mod.oQry_Cte_Resid.Post;
+  if (bCte_Resid = true) then
+  begin
+    if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+      dmGen_Data_Mod.oQry_Cte_Resid.Post;
+  end;
 
-  if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
-    dmGen_Data_Mod.oQry_Cte_InfL.Post;
+  if (bCte_InfoL = true) then
+  begin
+    if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+      dmGen_Data_Mod.oQry_Cte_InfL.Post;
+  end;
 
   if (dmGen_Data_Mod.otClientes.State in [dsInsert, dsEdit]) then
     dmGen_Data_Mod.otClientes.Post;
@@ -2173,16 +2209,33 @@ begin
     self.AdvSmoothTabPager1.ActivePageIndex := 1;
   end;
 
-  self.Fnd_Cte_Depen();
-  self.Fnd_Cte_Resid();
-  self.Fnd_Cte_InfoL();
-  self.Fnd_Cte_Trans();
-  self.Fnd_Cte_Finan();
-  self.Fnd_Cte_OrigF();
+  if (bCte_Depen = true) then
+    self.Fnd_Cte_Depen();
+
+  if (bCte_Resid = true) then
+    self.Fnd_Cte_Resid();
+
+  if (bCte_InfoL = true) then
+    self.Fnd_Cte_InfoL();
+
+  if (bCte_Trans = true) then
+    self.Fnd_Cte_Trans();
+
+  if (bCte_Finan = true) then
+    self.Fnd_Cte_Finan();
+
+  if (bCte_OrigF = true) then
+    self.Fnd_Cte_OrigF();
+
   self.Fnd_Cte_RefeB();
   self.Fnd_Cte_Refe1();
-  self.Fnd_Cte_FacRi();
-  self.Fnd_Cte_Descu();
+
+  if (bCte_FacRi = true) then
+    self.Fnd_Cte_FacRi();
+
+  if (bCte_Descu = true) then
+    self.Fnd_Cte_Descu();
+
   self.Sw_Interfaces();
 end;
 
@@ -2549,26 +2602,32 @@ end;
 
 procedure TfGen_Mant_Cte.Asingar_Cod_Cte();
 begin
-  if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+  if (bCte_Resid = true) then
   begin
+    if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert, dsEdit]) then
+    begin
 
-    if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert]) then
-      dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('flag_tmp').AsInteger := 1;
+      if (dmGen_Data_Mod.oQry_Cte_Resid.State in [dsInsert]) then
+        dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('flag_tmp').AsInteger := 1;
 
-    dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_cliente').AsString := self.cCte_Sel; // self.oid_cliente.Text;
-    dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('ultima_fecha_actualizacion').AsDateTime := now();
-    dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('ultimo_usuario_que_actualizo').AsInteger := UtilesV20.iUserID;
+      dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_cliente').AsString := self.cCte_Sel; // self.oid_cliente.Text;
+      dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('ultima_fecha_actualizacion').AsDateTime := now();
+      dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('ultimo_usuario_que_actualizo').AsInteger := UtilesV20.iUserID;
+    end;
   end;
 
-  if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+  if (bCte_InfoL = true) then
   begin
+    if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert, dsEdit]) then
+    begin
 
-    if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert]) then
-      dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('flag_tmp').AsInteger := 1;
+      if (dmGen_Data_Mod.oQry_Cte_InfL.State in [dsInsert]) then
+        dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('flag_tmp').AsInteger := 1;
 
-    dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_cliente').AsString := self.cCte_Sel; // self.oid_cliente.Text;
-    dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('ultima_fecha_actualizacion').AsDateTime := now();
-    dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('ultimo_usuario_que_actualizo').AsInteger := UtilesV20.iUserID;
+      dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_cliente').AsString := self.cCte_Sel; // self.oid_cliente.Text;
+      dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('ultima_fecha_actualizacion').AsDateTime := now();
+      dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('ultimo_usuario_que_actualizo').AsInteger := UtilesV20.iUserID;
+    end;
   end;
 
   if (dmGen_Data_Mod.otClientes.State in [dsInsert, dsEdit]) then
@@ -2627,75 +2686,89 @@ procedure TfGen_Mant_Cte.Cte_Borra_Tmp_Asig(cCod_Cte: string);
 VAR
   cSql_Ln: STRING;
 begin
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_dependientes ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Depen = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_dependientes ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Resid = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_residencia ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_InfoL = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_info_laboral ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Trans = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_transacciones ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Finan = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_ingresos ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_OrigF = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_fondos ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (ofon_id_cliente ="' + trim(self.cTmp_Sec) + '") OR (ofon_id_cliente="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_residencia ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_info_laboral ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_transacciones ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_origen_ingresos ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_origen_fondos ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (ofon_id_cliente ="' + trim(self.cTmp_Sec) + '") OR (ofon_id_cliente="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_referencias ';
+  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_referencias ';
   cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (Id_cliente ="' + trim(cCod_Cte) + '") ) ';
   cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
   cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_referencias_bancarias ';
+  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_referencias_bancarias ';
   cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
   cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=3)) ';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_factores_riesgo ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=2)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_FacRi = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_factores_riesgo ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=2)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE ';
-  cSql_Ln := cSql_Ln + 'FROM cliente_descuentos ';
-  cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
-  cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=2)) ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Descu = true) then
+  begin
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_descuentos ';
+    cSql_Ln := cSql_Ln + 'WHERE ( (id_cliente ="' + trim(self.cTmp_Sec) + '") OR (id_cliente ="' + trim(cCod_Cte) + '") ) ';
+    cSql_Ln := cSql_Ln + 'AND ((flag_tmp=1) OR (flag_tmp=2)) ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'DELETE ';
@@ -2709,35 +2782,59 @@ procedure TfGen_Mant_Cte.Cte_Limpia_Tmp_Asig(cCod_Cte: string);
 VAR
   cSql_Ln: STRING;
 begin
-  cSql_Ln := 'UPDATE cliente_dependientes SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
+  if (bCte_Depen = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_dependientes SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Resid = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_residencia SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_InfoL = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_info_laboral SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Trans = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_transacciones SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_Finan = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_origen_ingresos SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  if (bCte_OrigF = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_origen_fondos SET flag_tmp=0 WHERE ((ofon_id_cliente ="' + trim(self.cTmp_Sec) + '") or (ofon_id_cliente="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
+
+  cSql_Ln := 'UPDATE cliente_referencias SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
-  cSql_Ln := 'UPDATE cliente_residencia SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
+  cSql_Ln := 'UPDATE cliente_referencias_bancarias SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
-  cSql_Ln := 'UPDATE cliente_info_laboral SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_FacRi = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_factores_riesgo SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  cSql_Ln := 'UPDATE cliente_transacciones SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_origen_ingresos SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_origen_fondos SET flag_tmp=0 WHERE ((ofon_id_cliente ="' + trim(self.cTmp_Sec) + '") or (ofon_id_cliente="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_referencias SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_referencias_bancarias SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_factores_riesgo SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
-
-  cSql_Ln := 'UPDATE cliente_descuentos SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Descu = true) then
+  begin
+    cSql_Ln := 'UPDATE cliente_descuentos SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND flag_tmp=1';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := 'UPDATE cliente_impacto SET flag_tmp=0 WHERE ((id_cliente ="' + trim(self.cTmp_Sec) + '") or (id_cliente ="' + cCod_Cte + '")) AND (flag_tmp=1)';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
@@ -2812,41 +2909,59 @@ var
 begin
   fUtilesV20.WaitStart(self, 'INICIANDO PROCESO DE ELIMINACION:.');
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE DEPENDIENTES [1 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_dependientes ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Depen = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE DEPENDIENTES [1 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_dependientes ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE RESIDENCIA   [2 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_residencia ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Resid = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE RESIDENCIA   [2 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_residencia ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION LABORAL         [3 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_info_laboral ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_InfoL = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION LABORAL         [3 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_info_laboral ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION ORIGEN DE FONOS  [4 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_ingresos ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Finan = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION ORIGEN DE FONOS  [4 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_ingresos ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE TRANSACCIONES [5 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_transacciones ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Trans = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE TRANSACCIONES [5 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_transacciones ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE PATRIMONIO    [6 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_fondos ';
-  cSql_Ln := cSql_Ln + 'WHERE (ofon_id_cliente="") AND (ofon_id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_OrigF = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE PATRIMONIO    [6 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_origen_fondos ';
+    cSql_Ln := cSql_Ln + 'WHERE (ofon_id_cliente="") AND (ofon_id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DE REF. PERSONAL [7 DE 11]:..');
   cSql_Ln := '';
@@ -2860,17 +2975,23 @@ begin
   cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION FACTORES RIEZGOS [9 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_factores_riesgo ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_FacRi = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION FACTORES RIEZGOS [9 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_factores_riesgo ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
-  fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DESCUENTO DIRECTOS [10 DE 11]:..');
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'DELETE FROM cliente_descuentos ';
-  cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
-  UtilesV20.Execute_SQL_Command(cSql_Ln);
+  if (bCte_Descu = true) then
+  begin
+    fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DESCUENTO DIRECTOS [10 DE 11]:..');
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'DELETE FROM cliente_descuentos ';
+    cSql_Ln := cSql_Ln + 'WHERE (id_cliente="") AND (id_cliente="' + trim(cCod_Cte) + '") ';
+    UtilesV20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   fUtilesV20.WaitSetMsg('ELIMINANDO INFORMACION DEL CLIENTE/SOC [11 DE 11]:..');
   dmGen_Data_Mod.otClientes.delete;
@@ -2994,19 +3115,22 @@ begin
     self.Add_Automatic_Riesgo(cCod_Cte, 'FP02', false);
   // -------------------------------------------------------------------------------------------//
 
-  // ------------------VALIDA ACTIVIDAD ECONOMICA/RIESGO------------------------------------------//
-  cStr_Val := trim(dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_actividad_economica').AsString);
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'SELECT ';
-  cSql_Ln := cSql_Ln + '  activ_id, activ_prob, activ_impa, (activ_prob+activ_impa) AS con_riesgo ';
-  cSql_Ln := cSql_Ln + 'FROM mant_actividad_econ ';
-  cSql_Ln := cSql_Ln + 'WHERE activ_id="' + cStr_Val + '" ';
-  UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
+  if (bCte_InfoL = true) then
+  begin
+    // ------------------VALIDA ACTIVIDAD ECONOMICA/RIESGO------------------------------------------//
+    cStr_Val := trim(dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_actividad_economica').AsString);
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'SELECT ';
+    cSql_Ln := cSql_Ln + '  activ_id, activ_prob, activ_impa, (activ_prob+activ_impa) AS con_riesgo ';
+    cSql_Ln := cSql_Ln + 'FROM mant_actividad_econ ';
+    cSql_Ln := cSql_Ln + 'WHERE activ_id="' + cStr_Val + '" ';
+    UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
 
-  if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
-    self.Add_Automatic_Riesgo(cCod_Cte, 'FP03', true)
-  else
-    self.Add_Automatic_Riesgo(cCod_Cte, 'FP03', false, self.oFnd_Qry_Gen.FieldByName('activ_prob').AsString, self.oFnd_Qry_Gen.FieldByName('activ_impa').AsString);
+    if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
+      self.Add_Automatic_Riesgo(cCod_Cte, 'FP03', true)
+    else
+      self.Add_Automatic_Riesgo(cCod_Cte, 'FP03', false, self.oFnd_Qry_Gen.FieldByName('activ_prob').AsString, self.oFnd_Qry_Gen.FieldByName('activ_impa').AsString);
+  end;
   // -------------------------------------------------------------------------------------------//
 
   // -------------------------VALIDA PAIS/RIESGO------------------------------------------------//
@@ -3024,40 +3148,46 @@ begin
     self.Add_Automatic_Riesgo(cCod_Cte, 'PA01', false, self.oFnd_Qry_Gen.FieldByName('pais_prob').AsString, self.oFnd_Qry_Gen.FieldByName('pais_impa').AsString);
   // -------------------------------------------------------------------------------------------//
 
-  // -------------------------VALIDA DISTRITO/RIESGO------------------------------------------------//
-  cStr_Val := dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_distrito').AsString;
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'SELECT ';
-  cSql_Ln := cSql_Ln + '  dist_id, dist_prob, dist_impa, (dist_prob+dist_impa) AS con_riesgo ';
-  cSql_Ln := cSql_Ln + 'FROM mant_distritos ';
-  cSql_Ln := cSql_Ln + 'WHERE dist_id="' + cStr_Val + '" ';
-  UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
+  if (bCte_Resid = true) then
+  begin
+    // -------------------------VALIDA DISTRITO/RIESGO------------------------------------------------//
+    cStr_Val := dmGen_Data_Mod.oQry_Cte_Resid.FieldByName('id_distrito').AsString;
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'SELECT ';
+    cSql_Ln := cSql_Ln + '  dist_id, dist_prob, dist_impa, (dist_prob+dist_impa) AS con_riesgo ';
+    cSql_Ln := cSql_Ln + 'FROM mant_distritos ';
+    cSql_Ln := cSql_Ln + 'WHERE dist_id="' + cStr_Val + '" ';
+    UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
 
-  if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
-    self.Add_Automatic_Riesgo(cCod_Cte, 'FP05', true)
-  else
-    self.Add_Automatic_Riesgo(cCod_Cte, 'FP05', false, self.oFnd_Qry_Gen.FieldByName('dist_prob').AsString, self.oFnd_Qry_Gen.FieldByName('dist_impa').AsString);
+    if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
+      self.Add_Automatic_Riesgo(cCod_Cte, 'FP05', true)
+    else
+      self.Add_Automatic_Riesgo(cCod_Cte, 'FP05', false, self.oFnd_Qry_Gen.FieldByName('dist_prob').AsString, self.oFnd_Qry_Gen.FieldByName('dist_impa').AsString);
+  end;
 
   // -------------------------------------------------------------------------------------------//
 
-  if (self.ock_pep_sujeto.Checked = false) then
+  if ((self.ock_pep_sujeto.Checked = false) and (self.ock_pep_relacion.Checked = false)) then
     self.Add_Automatic_Riesgo(cCod_Cte, 'FI04', true)
   else
     self.Add_Automatic_Riesgo(cCod_Cte, 'FI04', false);
 
-  // ------------------VALIDA ACTIVIDAD ECONOMICA/RIESGO------------------------------------------//
-  cStr_Val := trim(dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_tipo_empleado').AsString);
-  cSql_Ln := '';
-  cSql_Ln := cSql_Ln + 'SELECT ';
-  cSql_Ln := cSql_Ln + '  tipem_id, tipem_prob, tipem_impa, (tipem_prob+tipem_impa) AS con_riesgo ';
-  cSql_Ln := cSql_Ln + 'FROM mant_tipos_empleados ';
-  cSql_Ln := cSql_Ln + 'WHERE tipem_id="' + cStr_Val + '" ';
-  UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
+  if (bCte_InfoL = true) then
+  begin
+    // ------------------VALIDA ACTIVIDAD ECONOMICA/RIESGO------------------------------------------//
+    cStr_Val := trim(dmGen_Data_Mod.oQry_Cte_InfL.FieldByName('id_tipo_empleado').AsString);
+    cSql_Ln := '';
+    cSql_Ln := cSql_Ln + 'SELECT ';
+    cSql_Ln := cSql_Ln + '  tipem_id, tipem_prob, tipem_impa, (tipem_prob+tipem_impa) AS con_riesgo ';
+    cSql_Ln := cSql_Ln + 'FROM mant_tipos_empleados ';
+    cSql_Ln := cSql_Ln + 'WHERE tipem_id="' + cStr_Val + '" ';
+    UtilesV20.Exec_Select_SQL(self.oFnd_Qry_Gen, cSql_Ln);
 
-  if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
-    self.Add_Automatic_Riesgo(cCod_Cte, 'ELA01', true)
-  else
-    self.Add_Automatic_Riesgo(cCod_Cte, 'ELA01', false, self.oFnd_Qry_Gen.FieldByName('tipem_prob').AsString, self.oFnd_Qry_Gen.FieldByName('tipem_impa').AsString);
+    if (self.oFnd_Qry_Gen.FieldByName('con_riesgo').AsInteger <= 0) then
+      self.Add_Automatic_Riesgo(cCod_Cte, 'ELA01', true)
+    else
+      self.Add_Automatic_Riesgo(cCod_Cte, 'ELA01', false, self.oFnd_Qry_Gen.FieldByName('tipem_prob').AsString, self.oFnd_Qry_Gen.FieldByName('tipem_impa').AsString);
+  end;
   // -------------------------------------------------------------------------------------------//
 end;
 

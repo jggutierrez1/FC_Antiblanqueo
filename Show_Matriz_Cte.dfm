@@ -164,8 +164,6 @@ object fShow_Matriz_Cte: TfShow_Matriz_Cte
     TabOrder = 2
     Version = '2.1.1.9'
     OnClick = oBtn_SalirClick
-    ExplicitLeft = 368
-    ExplicitTop = 450
     TMSStyle = 0
   end
   object HtmlViewer1: THtmlViewer
@@ -310,8 +308,9 @@ object fShow_Matriz_Cte: TfShow_Matriz_Cte
       item
         Width = 150
       end>
-    ExplicitLeft = -708
-    ExplicitTop = 577
-    ExplicitWidth = 1290
+  end
+  object oCte_Fnd: TFDQuery
+    Left = 304
+    Top = 472
   end
 end

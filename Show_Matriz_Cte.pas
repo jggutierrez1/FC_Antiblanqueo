@@ -5,7 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, AdvSmoothButton, Vcl.StdCtrls,
-  Vcl.DBCtrls, Vcl.Buttons, PngBitBtn, HTMLUn2, HtmlView, Vcl.ComCtrls;
+  Vcl.DBCtrls, Vcl.Buttons, PngBitBtn, HTMLUn2, HtmlView, Vcl.ComCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
 type
   TfShow_Matriz_Cte = class(TForm)
@@ -15,6 +19,7 @@ type
     oBtn_Salir: TAdvSmoothButton;
     oBtn_Recall: TAdvSmoothButton;
     StatusBar1: TStatusBar;
+    oCte_Fnd: TFDQuery;
     procedure oBtn_RecallClick(Sender: TObject);
     procedure oBtn_SalirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -40,26 +45,46 @@ procedure TfShow_Matriz_Cte.oBtn_RecallClick(Sender: TObject);
 var
   cSql_Ln: string;
 begin
-  cSql_Ln := 'CALL App_Calc_Cte_Matriz("' + trim(self.cCte_Sel) + '","' + IntToStr(UtilesV20.iUserID) + '","' + UtilesV20.sUserName + '","' + trim(self.cNom_Modulo) +
-    '/RECALCULO DE MATRIZ",0)';
+  if (UtilesV20.bEsCooperatiba = true) then
+    cSql_Ln := 'CALL App_Calc_Cte_Matriz("' + trim(self.cCte_Sel) + '","' + IntToStr(UtilesV20.iUserID) + '","' + UtilesV20.sUserName + '","' + trim(self.cNom_Modulo) +
+      '/RECALCULO DE MATRIZ",0,1)'
+  else
+    cSql_Ln := 'CALL App_Calc_Cte_Matriz("' + trim(self.cCte_Sel) + '","' + IntToStr(UtilesV20.iUserID) + '","' + UtilesV20.sUserName + '","' + trim(self.cNom_Modulo) +
+      '/RECALCULO DE MATRIZ",0,0)';
+
   UtilesV20.Execute_SQL_Command(cSql_Ln);
 
-  dmGen_Data_Mod.otClientes.Refresh;
+  oCte_Fnd.Refresh;
 
-  self.HtmlViewer1.LoadFromString(dmGen_Data_Mod.otClientes.FieldByName('html_matriz').AsWideString);
+  self.HtmlViewer1.LoadFromString(oCte_Fnd.FieldByName('html_matriz').AsWideString);
   self.HtmlViewer1.Repaint;
   MessageDlg('PROCESO FINALIZADO', mtInformation, [mbOk], 0);
 end;
 
 procedure TfShow_Matriz_Cte.FormCreate(Sender: TObject);
 begin
+  self.oCte_Fnd.Connection := fUtilesV20.oPublicCnn;
   self.cNom_Modulo := 'MANTENIMIENTO-CLIENTES';
-  self.HtmlViewer1.LoadFromString(dmGen_Data_Mod.otClientes.FieldByName('html_matriz').AsWideString);
-  self.HtmlViewer1.Repaint;
 end;
 
 procedure TfShow_Matriz_Cte.FormShow(Sender: TObject);
 begin
+  if (UtilesV20.bEsCooperatiba = true) then
+  begin
+    self.oCte_Fnd.close;
+    self.oCte_Fnd.SQL.Clear;
+    self.oCte_Fnd.SQL.Text := 'SELECT * FROM clientes WHERE (id_cliente="' + self.cCte_Sel + '") LIMIT 1';
+    self.oCte_Fnd.Open();
+  end
+  else
+  begin
+    self.oCte_Fnd.close;
+    self.oCte_Fnd.SQL.Clear;
+    self.oCte_Fnd.SQL.Text := 'SELECT * FROM clientes_v2 WHERE (id_cliente="' + self.cCte_Sel + '") LIMIT 1';
+    self.oCte_Fnd.Open();
+  end;
+  self.HtmlViewer1.LoadFromString(self.oCte_Fnd.FieldByName('html_matriz').AsWideString);
+  self.HtmlViewer1.Repaint;
   self.Muestra_Cte_Riesgo();
 end;
 
@@ -75,7 +100,7 @@ var
   cCte_Imp_Des: string;
 begin
 
-  cCte_Imp_Ran := trim(dmGen_Data_Mod.otClientes.FieldByName('nivel_riesgo').AsString);
+  cCte_Imp_Ran := trim(self.oCte_Fnd.FieldByName('nivel_riesgo').AsString);
   if (trim(cCte_Imp_Ran) = '') then
     cCte_Imp_Ran := '0';
 

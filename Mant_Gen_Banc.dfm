@@ -127,10 +127,6 @@ object fMant_Gen_banc: TfMant_Gen_banc
     object oTabAudit: TTabSheet
       Caption = 'Auditor'#237'a'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label16: TLabel
         Left = 27
         Top = 32
@@ -1128,7 +1124,6 @@ object fMant_Gen_banc: TfMant_Gen_banc
       'Database=fc_anti_bl'
       'Server=localhost'
       'User_Name=root')
-    Connected = True
     LoginPrompt = False
     Left = 370
     Top = 25

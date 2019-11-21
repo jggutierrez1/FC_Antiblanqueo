@@ -110,8 +110,16 @@ begin
   self.oBtn_Update.Enabled := false;
   self.oBtn_Salir.Enabled := false;
 
-  cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_ActE(' + trim(IntToStr(utilesv20.iUserID)) + ')';
-  utilesv20.Execute_SQL_Command(cSql_Ln);
+  if (utilesv20.bEsCooperatiba = true) then
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_ActE(' + trim(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end
+  else
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_ActE2(' + trim(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'UPDATE `mant_actividad_econ` SET ';
@@ -141,7 +149,7 @@ begin
     begin
       self.oQry_Act.FieldByName('activ_prob').AsInteger := fGen_Pop_Pon.iNiv_Prob;
       self.oQry_Act.FieldByName('activ_impa').AsInteger := fGen_Pop_Pon.iNiv_Impa;
-      //self.oQry_Act.FieldByName('activ_riesgo').AsInteger := (self.oQry_Act.FieldByName('activ_prob').AsInteger * self.oQry_Act.FieldByName('activ_impa').AsInteger);
+      // self.oQry_Act.FieldByName('activ_riesgo').AsInteger := (self.oQry_Act.FieldByName('activ_prob').AsInteger * self.oQry_Act.FieldByName('activ_impa').AsInteger);
 
       if ((fGen_Pop_Pon.iNiv_Prob = 0) AND (fGen_Pop_Pon.iNiv_Impa = 0)) THEN
         self.oQry_Act.FieldByName('activ_riesgo_chg').AsInteger := 0
@@ -154,7 +162,7 @@ begin
     begin
       self.oQry_Act.FieldByName('activ_prob').AsInteger := 0;
       self.oQry_Act.FieldByName('activ_impa').AsInteger := 0;
-      //self.oQry_Act.FieldByName('activ_riesgo').AsInteger := 0;
+      // self.oQry_Act.FieldByName('activ_riesgo').AsInteger := 0;
       self.oQry_Act.FieldByName('activ_riesgo_chg').AsInteger := 0;
     end;
     self.oQry_Act.post;

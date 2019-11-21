@@ -147,8 +147,16 @@ begin
   self.oBtn_Update.Enabled := false;
   self.oBtn_Salir.Enabled := false;
 
-  cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Pais(' + TRIM(IntToStr(utilesv20.iUserID)) + ',0)';
-  utilesv20.Execute_SQL_Command(cSql_Ln);
+  if (utilesv20.bEsCooperatiba = true) then
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Pais(' + TRIM(IntToStr(utilesv20.iUserID)) + ',0)';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end
+  else
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Pais2(' + TRIM(IntToStr(utilesv20.iUserID)) + ',0)';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'UPDATE `mant_paises` SET ';
@@ -156,8 +164,16 @@ begin
   cSql_Ln := cSql_Ln + 'WHERE 1=1';
   utilesv20.Execute_SQL_Command(cSql_Ln);
 
-  cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Dist(' + TRIM(IntToStr(utilesv20.iUserID)) + ')';
-  utilesv20.Execute_SQL_Command(cSql_Ln);
+  if (utilesv20.bEsCooperatiba = true) then
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Dist(' + TRIM(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end
+  else
+  begin
+    cSql_Ln := 'CALL App_Limpia_Fact_Riezgo_Dist2(' + TRIM(IntToStr(utilesv20.iUserID)) + ')';
+    utilesv20.Execute_SQL_Command(cSql_Ln);
+  end;
 
   cSql_Ln := '';
   cSql_Ln := cSql_Ln + 'UPDATE `mant_distritos` SET ';

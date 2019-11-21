@@ -70,7 +70,7 @@ begin
   self.StatusBar1.Panels[2].Text := 'Servidor: ' + futilesv20.oPublicCnn.Params.Values['Server'] + '/' + UpperCase(futilesv20.oPublicCnn.Params.Values['Database']);
   self.StatusBar1.Panels[3].Text := 'Empresa: ' + utilesv20.cDe_Empresa;
 
-  //self.cCod_Cte := '09756';
+  // self.cCod_Cte := '09756';
 
   self.Buscar_Data(self.cCod_Cte);
 end;

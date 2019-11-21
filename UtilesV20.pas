@@ -322,7 +322,7 @@ type
 
 var
   fUtilesV20: TfUtilesV20;
-  oFile: Tinifile;
+  oFile: TINIFile;
   oSetting_Fac: Config2;
   oSetting_Fac2: Config2;
   oMerge_Fields: Merge_Fields;
@@ -356,6 +356,9 @@ var
   oImo_FactLine: tGenericPrn;
   IdIPWatch1: TIdIPWatch;
   cUniqueStr: string;
+  clIni_Path, clIni_File: string;
+  olIni_File: TINIFile;
+  bEsCooperatiba: Boolean;
 
 function TimeADD(cTime: string; nInterval: integer; nValue: integer): string; overload;
 function TimeADD(TDateTime: TDateTime; nInterval: integer; nValue: integer): string; overload;
@@ -891,11 +894,11 @@ end;
 // ------------------------------------------------------------------------------------------//
 function TfUtilesV20.CargarServidoresActivos(var pComboSrvs: TcomboBox): integer;
 var
-  oFileIni: Tinifile;
+  oFileIni: TINIFile;
   sServerName: string;
   sConnStatus: string;
 begin
-  oFileIni := Tinifile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
+  oFileIni := TINIFile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
   pComboSrvs.Clear;
 
   sServerName := oFileIni.ReadString('servidores', 'Configuracion1', 'Desconocido1');
@@ -928,11 +931,11 @@ end;
 
 function TfUtilesV20.CargarServidoresActivosEh(var pComboSrvs: TDBComboBoxEh): integer;
 var
-  oFileIni: Tinifile;
+  oFileIni: TINIFile;
   sServerName: string;
   sConnStatus: string;
 begin
-  oFileIni := Tinifile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
+  oFileIni := TINIFile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
   pComboSrvs.Clear;
 
   sServerName := oFileIni.ReadString('servidores', 'Configuracion1', 'Desconocido1');
@@ -965,10 +968,10 @@ end;
 
 function TfUtilesV20.CargarServidores(var pComboSrvs: TcomboBox): integer;
 var
-  oFileIni: Tinifile;
+  oFileIni: TINIFile;
   sServerName: string;
 begin
-  oFileIni := Tinifile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
+  oFileIni := TINIFile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
   pComboSrvs.Clear;
 
   sServerName := oFileIni.ReadString('servidores', 'Configuracion1', 'Desconocido1');
@@ -1036,7 +1039,7 @@ begin
     end;
 
     sPath := ExtractFilePath(Application.ExeName) + 'Data\Config.ini';
-    oFile := Tinifile.Create(sPath);
+    oFile := TINIFile.Create(sPath);
     if trim(oSetting_Fac.clave) = '' then
       sPass := ''
     else
@@ -1101,7 +1104,7 @@ begin
   try
     sPath := ExtractFilePath(Application.ExeName) + 'Data\';
     sFile := sPath + 'Config.ini';
-    oFile := Tinifile.Create(sFile);
+    oFile := TINIFile.Create(sFile);
     with oSetting_Fac do
     begin
       sTmpP := oFile.ReadString(pClaveReg, 'clave', '');
@@ -2029,7 +2032,7 @@ end;
 function TfUtilesV20.BemaFI32INI(iRuta: integer = 1; iGetValue: integer = 0; sPort: string = ''): string;
 var
   sPath: string;
-  oFile: Tinifile;
+  oFile: TINIFile;
 begin
 
   if iRuta = 1 then
@@ -2042,7 +2045,7 @@ begin
     exit;
   end;
 
-  oFile := Tinifile.Create(sPath);
+  oFile := TINIFile.Create(sPath);
   case iGetValue of
     0:
       begin
@@ -4234,7 +4237,7 @@ end;
 function TfUtilesV20.Check_Host_IsAlive(cHost: string; nPort: integer): Boolean;
 var
   cIpAdress, cHostName: string;
-  oFileIni: Tinifile;
+  oFileIni: TINIFile;
   nPING_ON_CONNECTION: integer;
 begin
   if ((trim(cHost) = '') and (nPort = 0)) then
@@ -4251,7 +4254,7 @@ begin
     cHost := GetComputerNetName();
 
   cIpAdress := GetIPAddress(cHost);
-  oFileIni := Tinifile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
+  oFileIni := TINIFile.Create(ExtractFilePath(Application.ExeName) + 'Data\Config.ini');
   nPING_ON_CONNECTION := oFileIni.ReadInteger('GENERAL', 'PING_ON_CONNECTION', 0);
   if nPING_ON_CONNECTION = 1 then
   begin
@@ -4853,6 +4856,11 @@ end;
 initialization
 
 UtilesV20.cUniqueStr := fUtilesV20.RandomPassword(5);
+UtilesV20.clIni_Path := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName));
+UtilesV20.clIni_File := UtilesV20.clIni_Path + 'Data\Config.ini';
+UtilesV20.olIni_File := TINIFile.Create(UtilesV20.clIni_File);
+UtilesV20.bEsCooperatiba := UtilesV20.olIni_File.ReadBool('GENERAL', 'COOPERATIVA', True);
+UtilesV20.olIni_File.Free;
 
 end.
 

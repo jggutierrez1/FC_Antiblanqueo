@@ -349,13 +349,11 @@ object fGen_Add_RefG: TfGen_Add_RefG
       'Database=fc_anti_bl'
       'Server=localhost'
       'User_Name=root')
-    Connected = True
     LoginPrompt = False
     Left = 377
     Top = 268
   end
   object oQry_Rg: TFDQuery
-    Active = True
     Connection = oConn
     SQL.Strings = (
       'SELECT *'

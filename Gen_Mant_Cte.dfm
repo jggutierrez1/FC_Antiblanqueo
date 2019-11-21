@@ -75,7 +75,7 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
       Fill.Glow = gmNone
       Transparent = False
       Align = alClient
-      ActivePage = Tab_Ref
+      ActivePage = Tab_Eva
       TabSettings.StartMargin = 4
       TabSettings.Height = 35
       TabReorder = False
@@ -1558,7 +1558,7 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
                 end
                 object ock_pep_relacion: TDBCheckBox
                   Left = 20
-                  Top = 175
+                  Top = 176
                   Width = 472
                   Height = 25
                   Caption = #191'Tiene o tuvo relaci'#243'n con una Persona Pol'#237'ticamente Expuesta?'
@@ -4455,16 +4455,16 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
         1288
         92)
       object Label1: TLabel
-        Left = 831
-        Top = 3
-        Width = 138
+        Left = 695
+        Top = 19
+        Width = 147
         Height = 17
-        Caption = 'B'#250'squeda R'#225'pida Socio'
+        Caption = 'B'#250'squeda R'#225'pida Socios:'
       end
       object oFnd_Socio: TEdit
         Tag = 1
-        Left = 831
-        Top = 22
+        Left = 848
+        Top = 16
         Width = 137
         Height = 25
         Color = 12582911
@@ -5019,8 +5019,8 @@ object fGen_Mant_Cte: TfGen_Mant_Cte
       end
       object oDBNavigator: TDBNavigator
         Tag = 1
-        Left = 791
-        Top = 52
+        Left = 803
+        Top = 46
         Width = 225
         Height = 32
         DataSource = dmGen_Data_Mod.oDClientes
